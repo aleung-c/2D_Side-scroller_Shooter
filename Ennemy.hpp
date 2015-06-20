@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Ennemy.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajulien <ajulien@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 15:31:46 by ajulien           #+#    #+#             */
-/*   Updated: 2015/06/20 16:21:15 by ajulien          ###   ########.fr       */
+/*   Updated: 2015/06/20 16:56:08 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,7 @@ public:
 		~Ennemy( void );
 		Ennemy & operator=( Ennemy const &rhs );
 
-
-
 private:
-	int	const	vecX;
 	void	shoot( void );
 	Ennemy( void );
 	Ennemy( Ennemy const &src );

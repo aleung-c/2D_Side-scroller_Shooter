@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AEntity.cpp                                        :+:      :+:    :+:   */
+/*   Aentity.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajulien <ajulien@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 12:46:15 by ajulien           #+#    #+#             */
-/*   Updated: 2015/06/20 16:16:17 by ajulien          ###   ########.fr       */
+/*   Updated: 2015/06/20 16:31:30 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,10 @@ AEntity::AEntity(int x, int y, char c): display(c){
 	n->obj = this;
 	n->next = NULL;
 	if (Game::obj_list == NULL)
+	{
 		Game::obj_list = n;
+		Game::obj_list_last = n;
+	}
 	else
 	{
 		Game::obj_list_last->next = n;
