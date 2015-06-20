@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Player.hpp                                         :+:      :+:    :+:   */
+/*   Ennemy.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ajulien <ajulien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/06/20 11:42:39 by ajulien           #+#    #+#             */
-/*   Updated: 2015/06/20 16:19:09 by ajulien          ###   ########.fr       */
+/*   Created: 2015/06/20 15:31:46 by ajulien           #+#    #+#             */
+/*   Updated: 2015/06/20 16:21:15 by ajulien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PLAYER_HPP
-# define PLAYER_HPP
+#ifndef ENNEMY_HPP
+# define ENNEMY_HPP
 # include "ft_retro.hpp"
 
-class Player : public AEntity
+class Ennemy : public AEntity
 {
-	public:
-		Player( int x, int y, char c );
-		Player( Player const &src );
-		~Player( void );
-		Player & operator=( Player const &rhs );
+public:
+		Ennemy( int x, int y, char c );
+		~Ennemy( void );
+		Ennemy & operator=( Ennemy const &rhs );
 
-		void	shoot( void );
-	private:
-		Player( void );
+
+
+private:
+	int	const	vecX;
+	void	shoot( void );
+	Ennemy( void );
+	Ennemy( Ennemy const &src );
 };
-
 #endif
