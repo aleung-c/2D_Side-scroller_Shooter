@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Aentity.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajulien <ajulien@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 12:46:15 by ajulien           #+#    #+#             */
-/*   Updated: 2015/06/20 14:21:17 by ajulien          ###   ########.fr       */
+/*   Updated: 2015/06/20 14:33:49 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,27 @@ bool		AEntity::setPosX(int x)
 	}
 	this->posX = x;
 	return true;
+}
+
+char AEntity::getDisplay( void ) const {
+	return (this->display);
+}
+
+int AEntity::getvecX( void ) const {
+	return (this->vecX);
+}
+
+int AEntity::getvecY( void ) const {
+	return (this->vecY);
+}
+
+
+void AEntity::setvecX( int var ) {
+	this->vecX = var;
+}
+
+void AEntity::setvecY( int var ) {
+	this->vecY = var;
 }
 
 bool		AEntity::setPosY(int y)

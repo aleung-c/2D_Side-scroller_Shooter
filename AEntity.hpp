@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AEntity.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajulien <ajulien@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 10:43:58 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/06/20 14:03:19 by ajulien          ###   ########.fr       */
+/*   Updated: 2015/06/20 14:33:27 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,12 @@ class AEntity
 		int				getPosY();
 		bool			setPosX(int x);
 		bool			setPosY(int y);
+		char			getDisplay( void ) const;
+		int				getvecX( void ) const;
+		int				getvecY( void ) const;
+
+		void			setvecX( int var );
+		void			setvecY( int var );
 
 	private:
 		AEntity( void );
