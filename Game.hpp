@@ -6,7 +6,7 @@
 /*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 10:22:44 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/06/20 12:40:56 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/06/20 14:02:46 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ class Game
 
 		// Game Class functions //
 		void init( void ); // init ncurse screen
+		void write_borders( void ); // affiche une bordure initiale;
 		// void refresh( Player & player, Ennemy & ennemies );
 		// 	void check_getch( Player & player ); 	// check player touch et modifie les valeurs si touche pressed.
 		// 	void display( Player & player, Ennemy & ennemies );	// prends les objets et les affiche, 
@@ -52,6 +53,7 @@ class Game
 		// game screen
 		int		_scr_x; // size x;
 		int		_scr_y; // size y;
+		std::stringstream _display;
 
 		int		_scroll; // valeur du scroll par tour. == 1 ?
 
