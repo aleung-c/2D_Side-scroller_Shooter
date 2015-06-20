@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Game.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajulien <ajulien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 11:07:54 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/06/20 15:27:06 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/06/20 17:20:07 by ajulien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 
 // init and canon ft //
-Game::Game( void ) : _scr_x(140), _scr_y(36), _scroll(1), _nb_life(3) {
+Game::Game( void ) : _scr_x(140), _scr_y(36), _scroll(1), _nb_life(3), _score(0) {
 	std::cout << "Game created." << std::endl;
+	std::srand(time(0));
 }
 
 Game::Game( Game const &src ) {
@@ -33,6 +34,17 @@ Game & Game::operator=( Game const &rhs ) {
 	return (*this);
 }
 
+// Content Related Fonction //
+void	Game::spawn(){
+	int	i = 2;
+
+	while (i > 0)
+	{
+		Ennemy		ennemy(MAX_X, rand() % MAX_Y, 'X');
+		i--;
+	}
+}
+
 // Game class functions //
 
 t_ent_obj * Game::obj_list = NULL;
@@ -47,10 +59,10 @@ void Game::init( void ) {
 	if ( r_scrx < this->_scr_x || r_scry < this->_scr_y )
 	{
 		std::cout << r_scrx << std::endl;
-		std::cout << "Screen too small to launch game" 
+		std::cout << "Screen too small to launch game"
 				<< "(actual size = " << r_scrx << "x " << r_scry << "y )"
-				<< std::endl 
-				<< "Required size = " << this->_scr_x << "x " << this->_scr_y << "y." 
+				<< std::endl
+				<< "Required size = " << this->_scr_x << "x " << this->_scr_y << "y."
 				<< std::endl;
 		exit(-1);
 	}
@@ -114,6 +126,13 @@ int Game::get_nb_life( void ) const {
 	return (this->_nb_life);
 }
 
+int Game::getScore(void){
+	return _score;
+}
+
+void Game::setScore(int i){
+	_score += i;
+}
 
 void Game::set_scr_x( int var ) {
 	this->_scr_x = var;

@@ -6,7 +6,7 @@
 /*   By: ajulien <ajulien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 11:43:19 by ajulien           #+#    #+#             */
-/*   Updated: 2015/06/20 16:13:55 by ajulien          ###   ########.fr       */
+/*   Updated: 2015/06/20 17:07:36 by ajulien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 
 Player::Player( void ) : AEntity(1, 20, 'P')
 {
-	std::cout << "Player set." << std::endl;
+//	std::cout << "Player set." << std::endl;
+	type = "Player";
 	return;
 }
 
 Player::Player( int x, int y, char c ) : AEntity(x, y, c) {
-	std::cout << "Player set." << std::endl;
+	//std::cout << "Player set." << std::endl;
+	type = "Player";
 	return;
 }
 

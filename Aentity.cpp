@@ -6,7 +6,7 @@
 /*   By: ajulien <ajulien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 12:46:15 by ajulien           #+#    #+#             */
-/*   Updated: 2015/06/20 16:16:17 by ajulien          ###   ########.fr       */
+/*   Updated: 2015/06/20 17:04:52 by ajulien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 AEntity::AEntity(){
 };
 
-AEntity::AEntity(int x, int y, char c): display(c){
+AEntity::AEntity(int x, int y, char c): display(c), type("AEnt"){
 	if (setPosY(y) == false)
 	{
 		std::cout << "y " << y << " should be between : " << MIN_Y << " and " << MAX_Y << std::endl;
@@ -102,6 +102,9 @@ int AEntity::getvecY( void ) const {
 	return (this->vecY);
 }
 
+std::string		AEntity::getType(void ) const {
+	return(type);
+}
 
 void AEntity::setvecX( int var ) {
 	this->vecX = var;
