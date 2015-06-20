@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AEntity.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajulien <ajulien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 10:43:58 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/06/20 11:19:11 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/06/20 14:03:19 by ajulien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,25 @@
 class AEntity
 {
 	public:
-		AEntity( void );
+		AEntity(int x, int y, char c);
 		AEntity( AEntity const &src );
 		~AEntity( void );
 		AEntity & operator=( AEntity const &rhs );
 
-		void move( int x, int y ); // modifie la val du vect de deplacement;
-		virtual void shoot( void ) = 0; // spawn un sous objet projectile
-
+		void			move( int x, int y ); // modifie la val du vect de deplacement;
+		virtual void	shoot( void ) = 0; // spawn un sous objet projectile
+		int				getPosX();
+		int				getPosY();
+		bool			setPosX(int x);
+		bool			setPosY(int y);
 
 	private:
+		AEntity( void );
 		// space var //
 		int posX; // position
 		int posY;
 
-		int vecX; // valeur de deplacement au refresh 
+		int vecX; // valeur de deplacement au refresh
 		int vecY;
 
 		// apparence //

@@ -1,40 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_retro.hpp                                       :+:      :+:    :+:   */
+/*   Player.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ajulien <ajulien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/06/20 10:18:21 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/06/20 14:14:25 by ajulien          ###   ########.fr       */
+/*   Created: 2015/06/20 11:43:19 by ajulien           #+#    #+#             */
+/*   Updated: 2015/06/20 12:53:06 by ajulien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_RETO_HPP
-# define FT_RETO_HPP
-
-// lib includes.
-
-# include <iostream>
-# include <string>
-# include <sstream>
-# include <ncurses.h>
-# include <unistd.h>
-
-typedef struct			s_ent_obj {
-	void *			obj;
-	struct s_ent_obj	*next;
-}						t_ent_obj;
-// Class includes.
-# include "AEntity.hpp"
-# include "Game.hpp"
-
-// # include "Player.hpp"
-// # include "Ennemy.hpp"
-
-
-
-// functions.
-
-
-#endif
