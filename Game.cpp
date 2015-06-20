@@ -6,7 +6,7 @@
 /*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 11:07:54 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/06/20 14:02:31 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/06/20 15:27:06 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 
 // init and canon ft //
-Game::Game( void ) : _scr_x(220), _scr_y(55), _scroll(1), _nb_life(3) {
+Game::Game( void ) : _scr_x(140), _scr_y(36), _scroll(1), _nb_life(3) {
 	std::cout << "Game created." << std::endl;
 }
 
@@ -56,9 +56,6 @@ void Game::init( void ) {
 	}
 	this->write_borders(); // Affiche une bordure !
 	refresh();
-	sleep(5);
-	endwin();
-	exit(0);
 }
 
 void Game::write_borders( void ) {
@@ -84,6 +81,18 @@ void Game::write_borders( void ) {
 		c_x = 0;
 	}
 	str_display = this->_display.str();
+	printw(str_display.c_str());
+}
+
+void Game::g_refresh( Player & player)
+{
+	int r_scry;
+	int r_scrx;
+
+	getmaxyx(stdscr, r_scry, r_scrx );
+	std::string str_display;
+	str_display = this->_display.str();
+	str_display[player.getPosY() * r_scrx + player.getPosX()] = player.getDisplay();
 	printw(str_display.c_str());
 }
 

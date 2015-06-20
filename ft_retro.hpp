@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_retro.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajulien <ajulien@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 10:18:21 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/06/20 14:25:01 by ajulien          ###   ########.fr       */
+/*   Updated: 2015/06/20 15:06:43 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,10 @@ typedef struct			s_ent_obj {
 
 // Class includes.
 # include "AEntity.hpp"
-# include "Game.hpp"
 
-// # include "Player.hpp"
+
+# include "Player.hpp"
+# include "Game.hpp"
 // # include "Ennemy.hpp"
 
 

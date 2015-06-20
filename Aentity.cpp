@@ -6,7 +6,7 @@
 /*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 12:46:15 by ajulien           #+#    #+#             */
-/*   Updated: 2015/06/20 14:33:49 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/06/20 14:58:55 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@ AEntity::AEntity(){
 };
 
 AEntity::AEntity(int x, int y, char c): display(c){
-	if (setPosX(y) == false)
+	if (setPosY(y) == false)
 	{
-		std::cout << "y " << y << " should be between : " << MAX_Y << std::endl;
+		std::cout << "y " << y << " should be between : " << MIN_Y << " and " << MAX_Y << std::endl;
 		exit(-1);
 	}
-	if (setPosY(x) == false)
+	if (setPosX(x) == false)
 	{
-		std::cout << "y " << y << " should be more than : " << MAX_Y << std::endl;
+		std::cout << "x " << x << " should be between : " << MIN_X << " and " << MAX_X << std::endl;
 		exit(-1);
 	}
 	t_ent_obj	*n = new t_ent_obj;
@@ -41,6 +41,10 @@ AEntity::AEntity(int x, int y, char c): display(c){
 }
 AEntity::AEntity(AEntity const &src){
 	*this = src;
+};
+
+AEntity::~AEntity( void ){
+	return ;
 };
 
 AEntity &	AEntity::operator=(AEntity const & rhs){
@@ -63,11 +67,25 @@ bool		AEntity::setPosX(int x)
 		posX = MAX_X;
 		return false;
 	}
-	if (x > MIN_X){
+	if (x < MIN_X){
 		posX = MIN_X;
 		return false;
 	}
 	this->posX = x;
+	return true;
+}
+
+bool		AEntity::setPosY(int y)
+{
+	if (y > MAX_Y){
+		posY = MAX_Y;
+		return false;
+	}
+	if (y < MIN_Y){
+		posY = MIN_Y;
+		return false;
+	}
+	this->posY = y;
 	return true;
 }
 
@@ -92,23 +110,9 @@ void AEntity::setvecY( int var ) {
 	this->vecY = var;
 }
 
-bool		AEntity::setPosY(int y)
-{
-	if (y > MAX_Y){
-		posY = MAX_Y;
-		return false;
-	}
-	if (y > MIN_Y){
-		posY = MIN_Y;
-		return false;
-	}
-	this->posY = y;
-	return true;
-}
-
 void		AEntity::move( int x, int y ){
 	setPosY(y);
 	setPosX(x);
 }
 
-AEntity::~AEntity(){};
+

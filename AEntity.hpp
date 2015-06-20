@@ -6,7 +6,7 @@
 /*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 10:43:58 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/06/20 14:33:27 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/06/20 14:46:38 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ class AEntity
 		void			setvecX( int var );
 		void			setvecY( int var );
 
-	private:
+	protected:
 		AEntity( void );
 		// space var //
 		int posX; // position
