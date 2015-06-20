@@ -6,7 +6,7 @@
 /*   By: ajulien <ajulien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 11:07:54 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/06/20 17:20:07 by ajulien          ###   ########.fr       */
+/*   Updated: 2015/06/20 17:26:51 by ajulien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 
 // init and canon ft //
+
 Game::Game( void ) : _scr_x(140), _scr_y(36), _scroll(1), _nb_life(3), _score(0) {
 	std::cout << "Game created." << std::endl;
 	std::srand(time(0));
@@ -96,16 +97,37 @@ void Game::write_borders( void ) {
 	printw(str_display.c_str());
 }
 
-void Game::g_refresh( Player & player)
+void Game::g_place( void )
 {
-	int r_scry;
-	int r_scrx;
+	t_ent_obj *tmp;
 
-	getmaxyx(stdscr, r_scry, r_scrx );
-	std::string str_display;
-	str_display = this->_display.str();
-	str_display[player.getPosY() * r_scrx + player.getPosX()] = player.getDisplay();
-	printw(str_display.c_str());
+	tmp = Game::obj_list;
+
+	while (tmp)
+	{
+		move(tmp->obj->getPosY(), tmp->obj->getPosX());
+		printw("%c", tmp->obj->getDisplay());
+		tmp = tmp->next;
+	}
+}
+
+void Game::g_refresh( void ) {
+	t_ent_obj *tmp;
+
+	tmp = Game::obj_list;
+
+	while (tmp)
+	{
+		move(tmp->obj->getPosY(), tmp->obj->getPosX());
+		printw("%c", ' ');
+		tmp->obj->setPosX(tmp->obj->getPosX() + tmp->obj->getvecX());
+		// std::cout << tmp->obj->getvecX() << std::endl;
+		tmp->obj->setPosY(tmp->obj->getPosY() + tmp->obj->getvecY());
+		move(tmp->obj->getPosY(), tmp->obj->getPosX());
+		printw("%c", tmp->obj->getDisplay());
+		tmp = tmp->next;
+	}
+
 }
 
 // accessors //

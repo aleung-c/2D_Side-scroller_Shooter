@@ -6,7 +6,7 @@
 /*   By: ajulien <ajulien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 10:22:44 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/06/20 17:17:40 by ajulien          ###   ########.fr       */
+/*   Updated: 2015/06/20 17:25:58 by ajulien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ class Game
 		// Game Class functions //
 		void init( void ); // init ncurse screen
 		void write_borders( void ); // affiche une bordure initiale;
-
-		void g_refresh( Player & player);//, Ennemy & ennemies = NULL);
+		void g_place( void );//, Ennemy & ennemies = NULL);
+		void g_refresh( void );
 		// 	void check_getch( Player & player ); 	// check player touch et modifie les valeurs si touche pressed.
 		// 	void display( Player & player, Ennemy & ennemies );	// prends les objets et les affiche,
 		// 	// et reinitialise leurs vect de deplacement si besoin;
