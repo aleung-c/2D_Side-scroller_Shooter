@@ -6,15 +6,16 @@
 /*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 11:07:54 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/06/20 11:19:43 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/06/20 12:51:19 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_retro.hpp"
 
+
 // init and canon ft //
-Game::Game( void ) : _scr_x(220), _scr_x(55), _scroll(1), _nb_life(3) {
-	std::cout << "Game created." << std::endl:
+Game::Game( void ) : _scr_x(220), _scr_y(55), _scroll(1), _nb_life(3) {
+	std::cout << "Game created." << std::endl;
 }
 
 Game::Game( Game const &src ) {
@@ -22,28 +23,36 @@ Game::Game( Game const &src ) {
 }
 
 Game::~Game( void ) {
-	std::cout << "End of Game." << std::endl:
+	std::cout << "End of Game." << std::endl;
 }
 
-Game & operator=( Game const &rhs ) {
-	this->_scr_x = rhs._scr_x;
-	this->_scr_Y = rhs._scr_Y;
-	this->_nb_life = rhs._nb_life;
+Game & Game::operator=( Game const &rhs ) {
+	this->set_scr_x(rhs.get_scr_x());
+	this->set_scr_y(rhs.get_scr_y());
+	this->set_nb_life(rhs.get_nb_life());
+	return (*this);
 }
 
 // Game class functions //
 
-void Game:init( void ) {
+t_ent_obj * Game::obj_list = NULL;
+t_ent_obj * Game::obj_list_last  = Game::obj_list;
+
+void Game::init( void ) {
 	int r_scrx; // real values of the screen; user inputed;
 	int r_scry;
 
-	getmaxyx(stdscr, r_scrx, r_scry);
+	initscr();
+	getmaxyx(stdscr, r_scry, r_scrx );
 	if ( r_scrx < this->_scr_x || r_scry < this->_scr_y )
 	{
+		std::cout << r_scrx << std::endl;
 		std::cout << "Screen too small to launch game" << std::endl;
 		exit(-1);
 	}
-	initscr();
+	refresh();
+	sleep(5);
+	endwin();
 
 }
 

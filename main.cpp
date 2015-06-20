@@ -6,7 +6,7 @@
 /*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 10:17:43 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/06/20 11:38:06 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/06/20 12:44:14 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void ft_retro( void )
 {
-	Game		game();
+	Game		game;
 	
-	Player		player(1, 20); // player class daughter of Entity
-	Ennemy		*ennemies; // Ennemy class daughter of Entity
+	// Player		player(1, 20); // player class daughter of Entity
+	// Ennemy		*ennemies; // Ennemy class daughter of Entity
 
 	// Ennemy and player have Projectile subclass.
 
@@ -25,7 +25,7 @@ void ft_retro( void )
 
 	while (1)
 	{
-		game.refresh(player, ennemies/*, items*/); // Prends le joueurs, les ennemies,
+		//game.refresh(player, ennemies/*, items*/); // Prends le joueurs, les ennemies,
 		// ce qui inclue leurs projectiles lancés, et les affiche sur le screen.
 
 
@@ -35,7 +35,6 @@ void ft_retro( void )
 
 int main( void )
 {
-	if (argc == 1)
 		ft_retro();
 	return (0);
 }
