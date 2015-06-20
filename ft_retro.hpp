@@ -6,7 +6,7 @@
 /*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 10:18:21 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/06/20 15:06:43 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/06/20 16:22:41 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,13 @@
 # include <ncurses.h>
 # include <unistd.h>
 # include <cstring>
-
+# include "AEntity.hpp"
 typedef struct			s_ent_obj {
-	void *			obj;
+	AEntity *			obj;
 	struct s_ent_obj	*next;
 }						t_ent_obj;
 
 // Class includes.
-# include "AEntity.hpp"
-
 
 # include "Player.hpp"
 # include "Game.hpp"
