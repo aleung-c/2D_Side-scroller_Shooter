@@ -1,38 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Ennemy.cpp                                         :+:      :+:    :+:   */
+/*   Projectile.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajulien <ajulien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/06/20 15:31:58 by ajulien           #+#    #+#             */
-/*   Updated: 2015/06/20 19:44:04 by aleung-c         ###   ########.fr       */
+/*   Created: 2015/06/20 18:40:38 by ajulien           #+#    #+#             */
+/*   Updated: 2015/06/20 19:31:30 by ajulien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_retro.hpp"
+#include "Projectile.hpp"
 
-Ennemy::Ennemy( void ) : AEntity(10, 20, 'X')
+Projectile::Projectile( void ) : AEntity()
 {
-	setvecX(-1);
-	this->setPosX(MAX_X - 1);
 	return;
 }
 
-Ennemy::Ennemy( int x, int y, char c ) : AEntity(x, y, c){
-	setvecX(-1);
+Projectile::Projectile( int x, int y, char c ) : AEntity(x, y, c){
+	setvecX(1);
 	return;
 }
 
-Ennemy::Ennemy( Ennemy const &src ) : AEntity(src) {
+Projectile::Projectile( Projectile const &src ) : AEntity(src) {
 	return ;
 }
 
-Ennemy::~Ennemy( void ) {
+Projectile::~Projectile( void ) {
 	return ;
 }
 
-Ennemy & Ennemy::operator=( Ennemy const &rhs ) {
+Projectile & Projectile::operator=( Projectile const &rhs ) {
 	posX = rhs.posX;
 	posY = rhs.posY;
 	display = rhs.display;
@@ -40,7 +38,5 @@ Ennemy & Ennemy::operator=( Ennemy const &rhs ) {
 }
 
 // functions //
-void	Ennemy::shoot( void ) {
+void	Projectile::shoot( void ) {
 }
-
-// accessors //

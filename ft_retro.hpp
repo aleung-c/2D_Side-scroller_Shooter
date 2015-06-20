@@ -6,7 +6,7 @@
 /*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 10:18:21 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/06/20 18:27:02 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/06/20 19:42:12 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,22 @@
 # include <unistd.h>
 # include <cstring>
 # include <ctime>
-# include "AEntity.hpp"
+
+class AEntity;
+class Projectile;
+class Ennemy;
+class Player;
+class Game;
 
 typedef struct			s_ent_obj {
 	AEntity *			obj;
 	struct s_ent_obj	*next;
+	struct s_ent_obj	*prev;
 }						t_ent_obj;
 
 // Class includes.
+# include "AEntity.hpp"
+# include "Projectile.hpp"
 # include "Ennemy.hpp"
 # include "Player.hpp"
 # include "Game.hpp"

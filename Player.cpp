@@ -6,7 +6,7 @@
 /*   By: ajulien <ajulien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 11:43:19 by ajulien           #+#    #+#             */
-/*   Updated: 2015/06/20 17:07:36 by ajulien          ###   ########.fr       */
+/*   Updated: 2015/06/20 19:39:19 by ajulien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,6 @@ Player & Player::operator=( Player const &rhs ) {
 // functions //
 
 void	Player::shoot( void ) {
-	std::cout << "Player shoots !" << std::endl;
+	Projectile *p = new Projectile(getPosX() + 1, getPosY(), '-');
+	return;
 }

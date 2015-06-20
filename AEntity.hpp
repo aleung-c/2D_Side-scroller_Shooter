@@ -6,7 +6,7 @@
 /*   By: ajulien <ajulien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 10:43:58 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/06/20 16:54:42 by ajulien          ###   ########.fr       */
+/*   Updated: 2015/06/20 19:37:33 by ajulien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ class AEntity
 {
 	public:
 		AEntity(int x, int y, char c);
-		~AEntity( void );
+		virtual ~AEntity( void );
+		AEntity( AEntity const &src );
+		AEntity( void );
 		AEntity & operator=( AEntity const &rhs );
 
 		void			move( int x, int y ); // modifie la val du vect de deplacement;
@@ -34,16 +36,17 @@ class AEntity
 		std::string		getType( void ) const;
 		void			setvecX( int var );
 		void			setvecY( int var );
+		void			die();
 
 	protected:
-		AEntity( AEntity const &src );
-		AEntity( void );
 		// space var //
 		int posX; // position
 		int posY;
 
 		int vecX; // valeur de deplacement au refresh
 		int vecY;
+
+		t_ent_obj *_n;
 
 		std::string		type;
 		// apparence //
