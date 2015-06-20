@@ -6,7 +6,7 @@
 /*   By: ajulien <ajulien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 10:43:58 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/06/20 15:41:44 by ajulien          ###   ########.fr       */
+/*   Updated: 2015/06/20 16:54:42 by ajulien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ class AEntity
 {
 	public:
 		AEntity(int x, int y, char c);
-		AEntity( AEntity const &src );
 		~AEntity( void );
 		AEntity & operator=( AEntity const &rhs );
 
@@ -32,11 +31,12 @@ class AEntity
 		char			getDisplay( void ) const;
 		int				getvecX( void ) const;
 		int				getvecY( void ) const;
-
+		std::string		getType( void ) const;
 		void			setvecX( int var );
 		void			setvecY( int var );
 
 	protected:
+		AEntity( AEntity const &src );
 		AEntity( void );
 		// space var //
 		int posX; // position
@@ -45,6 +45,7 @@ class AEntity
 		int vecX; // valeur de deplacement au refresh
 		int vecY;
 
+		std::string		type;
 		// apparence //
 		char display; // char qui sera affiché.
 };

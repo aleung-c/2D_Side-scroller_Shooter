@@ -6,7 +6,7 @@
 /*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 10:18:21 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/06/20 16:25:45 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/06/20 18:27:02 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 // lib includes.
 
 // zone jouable  des elements //
-# define MAX_Y 54
+# define MAX_Y 35
 # define MIN_Y 5
-# define MAX_X 219
+# define MAX_X 139
 # define MIN_X 1
 
 # include <iostream>
@@ -27,6 +27,7 @@
 # include <ncurses.h>
 # include <unistd.h>
 # include <cstring>
+# include <ctime>
 # include "AEntity.hpp"
 
 typedef struct			s_ent_obj {

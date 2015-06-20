@@ -6,7 +6,7 @@
 /*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 10:22:44 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/06/20 17:12:25 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/06/20 19:36:16 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,13 @@ class Game
 		// Game Class functions //
 		void init( void ); // init ncurse screen
 		void write_borders( void ); // affiche une bordure initiale;
-		
 		void g_place( void );//, Ennemy & ennemies = NULL);
 		void g_refresh( void );
 		void g_check_getch(); 	// check player touch et modifie les valeurs si touche pressed.
-		// 	void display( Player & player, Ennemy & ennemies );	// prends les objets et les affiche, 
-		// 	// et reinitialise leurs vect de deplacement si besoin;
-		// 	void check_events( Player & player, Ennemy & ennemies ); // check les events(projectile touche, collision, etc ...)
-		// 	void add_scroll( Player & player, Ennemy & ennemies );// puis, applique le scroll sur tous les obj sauf player. 
-
+		void GameEvents(); // Les events de jeu;
+			void check_PlayerEvents(AEntity * player);
+			void check_EnnemyEvents(AEntity * player);
+		void	spawn(); // ennemy spawn
 		// accessors //
 
 			int get_scr_x( void ) const;
@@ -43,6 +41,7 @@ class Game
 			int get_init_scr_y( void ) const;
 			int get_scroll( void ) const;
 			int get_nb_life( void ) const;
+			int getScore();
 
 			void set_scr_x( int var );
 			void set_scr_y( int var );
@@ -50,9 +49,11 @@ class Game
 			void set_init_scr_y( int var );
 			void set_scroll( int var );
 			void set_nb_life( int var );
+			void setScore( int s);
 
 			static t_ent_obj * obj_list;
 			static t_ent_obj * obj_list_last;
+
 	private:
 
 
@@ -67,6 +68,7 @@ class Game
 
 		// game_var
 		int		_nb_life;
+		int	_score;
 };
 
 #endif

@@ -6,14 +6,16 @@
 /*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 15:31:58 by ajulien           #+#    #+#             */
-/*   Updated: 2015/06/20 16:57:42 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/06/20 18:37:19 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_retro.hpp"
 
-Ennemy::Ennemy( void ) : AEntity(1, 20, 'P')
+Ennemy::Ennemy( void ) : AEntity(10, 20, 'X')
 {
+	setvecX(-1);
+	this->setPosX(MAX_X - 1);
 	return;
 }
 
