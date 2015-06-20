@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AEntity.cpp                                        :+:      :+:    :+:   */
+/*   Aentity.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ajulien <ajulien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 12:46:15 by ajulien           #+#    #+#             */
-/*   Updated: 2015/06/20 17:27:18 by ajulien          ###   ########.fr       */
+/*   Updated: 2015/06/20 18:55:50 by ajulien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_retro.hpp"
 
 AEntity::AEntity(){
-};
+}
 
 AEntity::AEntity(int x, int y, char c): display(c), type("AEnt"){
 	if (setPosY(y) == false)
@@ -27,6 +27,7 @@ AEntity::AEntity(int x, int y, char c): display(c), type("AEnt"){
 		exit(-1);
 	}
 	t_ent_obj	*n = new t_ent_obj;
+	t_ent_obj	*tmp;
 	vecX = 0;
 	vecY = 0;
 	n->obj = this;
@@ -35,26 +36,37 @@ AEntity::AEntity(int x, int y, char c): display(c), type("AEnt"){
 	{
 		Game::obj_list = n;
 		Game::obj_list_last = n;
+		n->prev = NULL;
 	}
 	else
 	{
 		Game::obj_list_last->next = n;
+		tmp = Game::obj_list_last;
 		Game::obj_list_last = n;
+		n->prev = tmp;
 	}
+	_n = n;
 }
 
 AEntity::AEntity(AEntity const &src){
 	*this = src;
-};
+}
 
 AEntity::~AEntity( void ){
 	return ;
-};
+}
 
 AEntity &	AEntity::operator=(AEntity const & rhs){
 	posX = rhs.posX;
 	posY = rhs.posY;
 	return (*this);
+}
+
+void		AEntity::die(){
+	t_ent_obj	*tmp;
+
+	_n->prev->next = _n->next->prev;
+	delete this;
 }
 
 int			AEntity::getPosX(){

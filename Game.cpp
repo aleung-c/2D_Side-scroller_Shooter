@@ -6,7 +6,7 @@
 /*   By: ajulien <ajulien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 11:07:54 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/06/20 17:26:51 by ajulien          ###   ########.fr       */
+/*   Updated: 2015/06/20 17:38:38 by ajulien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	Game::spawn(){
 
 	while (i > 0)
 	{
-		Ennemy		ennemy(MAX_X, rand() % MAX_Y, 'X');
+		Ennemy		*i = new Ennemy(MAX_X, rand() % MAX_Y, 'X');
 		i--;
 	}
 }
