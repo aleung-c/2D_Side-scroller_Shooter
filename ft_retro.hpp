@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_retro.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajulien <ajulien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 10:18:21 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/06/20 15:06:43 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/06/20 16:18:57 by ajulien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_RETO_HPP
-# define FT_RETO_HPP
+#ifndef FT_RETRO_HPP
+# define FT_RETRO_HPP
 
 // lib includes.
 
@@ -36,7 +36,7 @@ typedef struct			s_ent_obj {
 // Class includes.
 # include "AEntity.hpp"
 
-
+# include "Ennemy.hpp"
 # include "Player.hpp"
 # include "Game.hpp"
 // # include "Ennemy.hpp"

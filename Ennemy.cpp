@@ -1,37 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Player.cpp                                         :+:      :+:    :+:   */
+/*   Ennemy.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ajulien <ajulien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/06/20 11:43:19 by ajulien           #+#    #+#             */
-/*   Updated: 2015/06/20 16:13:55 by ajulien          ###   ########.fr       */
+/*   Created: 2015/06/20 15:31:58 by ajulien           #+#    #+#             */
+/*   Updated: 2015/06/20 16:21:38 by ajulien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_retro.hpp"
 
-Player::Player( void ) : AEntity(1, 20, 'P')
+Ennemy::Ennemy( void ) : AEntity(1, 20, 'P'), vecX(-1)
 {
-	std::cout << "Player set." << std::endl;
 	return;
 }
 
-Player::Player( int x, int y, char c ) : AEntity(x, y, c) {
-	std::cout << "Player set." << std::endl;
+Ennemy::Ennemy( int x, int y, char c ) : AEntity(x, y, c), vecX(-1) {
 	return;
 }
 
-Player::Player( Player const &src ) : AEntity(src) {
+Ennemy::Ennemy( Ennemy const &src ) : AEntity(src), vecX(-1) {
 	return ;
 }
 
-Player::~Player( void ) {
+Ennemy::~Ennemy( void ) {
 	return ;
 }
 
-Player & Player::operator=( Player const &rhs ) {
+Ennemy & Ennemy::operator=( Ennemy const &rhs ) {
 	posX = rhs.posX;
 	posY = rhs.posY;
 	display = rhs.display;
@@ -40,6 +38,5 @@ Player & Player::operator=( Player const &rhs ) {
 
 // functions //
 
-void	Player::shoot( void ) {
-	std::cout << "Player shoots !" << std::endl;
+void	Ennemy::shoot( void ) {
 }
