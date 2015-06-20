@@ -6,7 +6,7 @@
 /*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 11:07:54 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/06/20 16:59:20 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/06/20 17:29:09 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 // init and canon ft //
 Game::Game( void ) : _scr_x(140), _scr_y(35), _scroll(1), _nb_life(3) {
 	std::cout << "Game created." << std::endl;
+	getmaxyx(stdscr, this->_init_scr_y, this->_init_scr_x);
 }
 
 Game::Game( Game const &src ) {
@@ -100,7 +101,13 @@ void Game::g_place( void )
 
 void Game::g_refresh( void ) {
 	t_ent_obj *tmp;
+	int c_x_scr;
+	int c_y_scr;
 
+	getmaxyx(stdscr, c_y_scr, c_x_scr);
+	std::cout << c_y_scr << std::endl;
+	if (c_x_scr != this->_init_scr_x || c_y_scr != this->_init_scr_y)
+		exit(-1);
 	tmp = Game::obj_list;
 
 	while (tmp)
@@ -110,8 +117,10 @@ void Game::g_refresh( void ) {
 		tmp->obj->setPosX(tmp->obj->getPosX() + tmp->obj->getvecX());
 		// std::cout << tmp->obj->getvecX() << std::endl;
 		tmp->obj->setPosY(tmp->obj->getPosY() + tmp->obj->getvecY());
-		move(tmp->obj->getPosY(), tmp->obj->getPosX());
-		printw("%c", tmp->obj->getDisplay());
+		
+		mvaddch(tmp->obj->getPosY(), tmp->obj->getPosX(), tmp->obj->getDisplay());
+		// move(tmp->obj->getPosY(), tmp->obj->getPosX());
+		// printw("%c", tmp->obj->getDisplay());
 		tmp = tmp->next;
 	}
 
@@ -125,6 +134,14 @@ int Game::get_scr_x( void ) const {
 
 int Game::get_scr_y( void ) const {
 	return (this->_scr_y);
+}
+
+int Game::get_init_scr_x( void ) const {
+	return (this->_init_scr_x);
+}
+
+int Game::get_init_scr_y( void ) const {
+	return (this->_init_scr_y);
 }
 
 int Game::get_scroll( void ) const {
@@ -142,6 +159,14 @@ void Game::set_scr_x( int var ) {
 
 void Game::set_scr_y( int var ) {
 	this->_scr_y = var;
+}
+
+void Game::set_init_scr_x( int var ) {
+	this->_init_scr_x = var;
+}
+
+void Game::set_init_scr_y( int var ) {
+	this->_init_scr_y = var;
 }
 
 void Game::set_scroll( int var ) {
