@@ -6,7 +6,7 @@
 /*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 10:18:21 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/06/20 12:51:15 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/06/20 13:57:48 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,17 @@
 
 // lib includes.
 
+// zone jouable  des elements //
+# define MAX_Y 54
+# define MIN_Y 5
+# define MAX_X 219
+# define MIN_X 1
+
 # include <iostream>
 # include <string>
 # include <sstream>
 # include <ncurses.h>
+#include <cstring>
 
 #include <unistd.h>
 
