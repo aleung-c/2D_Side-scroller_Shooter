@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Game.GameEvent.cpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajulien <ajulien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 18:31:44 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/06/21 16:22:41 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/06/21 17:10:59 by ajulien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void Game::GameEvents() {
 			// delete tmp_proj;
 		}
 		tmp_proj = tmp_proj->next;
-	}	
+	}
 	while (tmp_enn)
 	{
 		check_EnnemyEvents(tmp_enn);
@@ -74,7 +74,9 @@ void Game::check_EnnemyEvents(t_en_obj * ennemy) {
 	while (tmp_proj)
 	{
 		if ((ennemy->obj->getPosX() == tmp_proj->obj->getPosX() ||
-			ennemy->obj->getPosX() == (tmp_proj->obj->getPosX() - 1))
+			ennemy->obj->getPosX() == (tmp_proj->obj->getPosX() - 1)
+			|| ennemy->obj->getPosX() == (tmp_proj->obj->getPosX() - 2)
+			|| ennemy->obj->getPosX() == (tmp_proj->obj->getPosX() - 3))
 			&&  ennemy->obj->getPosY() == tmp_proj->obj->getPosY())
 		{
 			// sleep(1);
@@ -87,7 +89,7 @@ void Game::check_EnnemyEvents(t_en_obj * ennemy) {
 			delete tmp_proj->obj;
 			// delete tmp_proj;
 			return ;
-			
+
 			// tmp_proj = Game::projec_list;
 			// delete tmp_proj;
 			// call die player.

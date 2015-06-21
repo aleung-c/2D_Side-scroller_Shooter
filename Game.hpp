@@ -6,7 +6,7 @@
 /*   By: ajulien <ajulien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 10:22:44 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/06/21 15:08:02 by ajulien          ###   ########.fr       */
+/*   Updated: 2015/06/21 17:10:57 by ajulien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,9 @@ class Game
 			static t_pro_obj *	projec_list_last;
 			static int shoot_delay;
 			static	Player * p1 ;
+
+			static t_epro_obj *	eprojec_list;
+			static t_epro_obj *	eprojec_list_last;
 
 			static t_en_obj *	ennemy_list;
 			static t_en_obj *	ennemy_list_last;

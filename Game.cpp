@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Game.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajulien <ajulien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 11:07:54 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/06/21 15:12:17 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/06/21 17:32:25 by ajulien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,17 @@ Game & Game::operator=( Game const &rhs ) {
 // Content Related Fonction //
 void	Game::spawn() {
 	int i;
+	char t[3];
+	int j;
 
-	i = rand() % 1000;
-	if (i == 20)
+	t[0] = '<';
+	t[1] = 'K';
+	t[2] = 'O';
+	i = rand() % 200000;
+	j = rand() % 3;
+	if (i < score)
 	{
-		Ennemy *	ennemy = new Ennemy(MAX_X - 1, 10, 'X');
+		Ennemy *	ennemy = new Ennemy(MAX_X - 1, 10, t[j]);
 		ennemy->setPosY(rand() % MAX_Y);
 		if (ennemy)
 			return;
@@ -60,6 +66,9 @@ t_en_obj * Game::ennemy_list_last  = Game::ennemy_list;
 
 t_pro_obj * Game::projec_list = NULL;
 t_pro_obj * Game::projec_list_last  = Game::projec_list;
+
+t_epro_obj * Game::eprojec_list = NULL;
+t_epro_obj * Game::eprojec_list_last  = Game::eprojec_list;
 
 void Game::init( void ) {
 	int r_scrx; // real values of the screen; user inputed;

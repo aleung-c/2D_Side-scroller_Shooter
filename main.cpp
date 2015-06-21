@@ -6,7 +6,7 @@
 /*   By: ajulien <ajulien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 10:17:43 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/06/21 15:07:29 by ajulien          ###   ########.fr       */
+/*   Updated: 2015/06/21 16:40:06 by ajulien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void ft_retro( void )
 			game.spawn();
 			if (i == 1000)
 			{
+				Game::score += 1;
 				Game::shoot_delay = 0;
 				i =0;
 			}

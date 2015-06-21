@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Ennemy.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajulien <ajulien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 15:31:58 by ajulien           #+#    #+#             */
-/*   Updated: 2015/06/21 16:26:18 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/06/21 17:19:45 by ajulien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,13 @@ Ennemy & Ennemy::operator=( Ennemy const &rhs ) {
 
 // functions //
 void	Ennemy::shoot( void ) {
+	int i;
+
+	i = rand() % 5;
+	if (i == 1)
+	{
+		Eprojectile *p = new Eprojectile(getPosX() - 1, getPosY(), '~');
+	}
 }
 
 // accessors //
