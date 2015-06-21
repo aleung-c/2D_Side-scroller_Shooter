@@ -6,7 +6,7 @@
 /*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 15:31:58 by ajulien           #+#    #+#             */
-/*   Updated: 2015/06/21 16:26:18 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/06/21 18:05:49 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,15 @@ Ennemy & Ennemy::operator=( Ennemy const &rhs ) {
 
 // functions //
 void	Ennemy::shoot( void ) {
+	int i;
+
+	i = rand() % 40;
+	if (i == 1)
+	{
+		Eprojectile *p = new Eprojectile(getPosX() - 1, getPosY(), '~');
+		if (p)
+		{}
+	}
 }
 
 // accessors //

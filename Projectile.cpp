@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Projectile.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajulien <ajulien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 18:40:38 by ajulien           #+#    #+#             */
-/*   Updated: 2015/06/21 16:25:55 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/06/21 17:13:26 by ajulien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ Projectile::Projectile( void ) : AEntity()
 }
 
 Projectile::Projectile( int x, int y, char c ) : AEntity(x, y, c){
-	setvecX(1);
+	setvecX(2);
 	type = "Projectile";
 	t_pro_obj	*n = new t_pro_obj;
 	t_pro_obj	*tmp;

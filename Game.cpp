@@ -6,7 +6,7 @@
 /*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 11:07:54 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/06/21 17:40:51 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/06/21 18:16:49 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ Player * Game::p1 = new Player(10, 20, 'o');
 // init and canon ft //
 int Game::score = 0;
 
-Game::Game( void ) : _scr_x(140), _scr_y(36), _scroll(1), _nb_life(3){
+Game::Game( void ) : _scr_x(140), _scr_y(36), _scroll(1), _nb_life(5){
 	std::cout << "Game created." << std::endl;
 	getmaxyx(stdscr, this->_init_scr_y, this->_init_scr_x);
 	std::srand(time(0));
@@ -42,11 +42,17 @@ Game & Game::operator=( Game const &rhs ) {
 // Content Related Fonction //
 void	Game::spawn() {
 	int i;
+	char t[3];
+	int j;
 
-	i = rand() % 1000;
-	if (i == 20)
+	t[0] = '<';
+	t[1] = 'K';
+	t[2] = 'O';
+	i = rand() % 200000;
+	j = rand() % 3;
+	if (i < score)
 	{
-		Ennemy *	ennemy = new Ennemy(MAX_X - 1, 10, 'X');
+		Ennemy *	ennemy = new Ennemy(MAX_X - 1, 10, t[j]);
 		ennemy->setPosY(rand() % MAX_Y);
 		if (ennemy)
 			return;
@@ -61,6 +67,9 @@ t_en_obj * Game::ennemy_list_last  = Game::ennemy_list;
 t_pro_obj * Game::projec_list = NULL;
 t_pro_obj * Game::projec_list_last  = Game::projec_list;
 
+t_epro_obj * Game::eprojec_list = NULL;
+t_epro_obj * Game::eprojec_list_last  = Game::eprojec_list;
+
 void Game::init( void ) {
 	int r_scrx; // real values of the screen; user inputed;
 	int r_scry;
@@ -71,6 +80,10 @@ void Game::init( void ) {
 	start_color();
 	init_pair(1, COLOR_BLACK, COLOR_CYAN);
 	init_pair(2, COLOR_BLUE, COLOR_CYAN);
+	init_pair(3, COLOR_RED, COLOR_CYAN);
+	init_pair(4, COLOR_GREEN, COLOR_BLACK);
+	init_pair(5, COLOR_YELLOW, COLOR_BLACK);
+	init_pair(6, COLOR_RED, COLOR_BLACK);
 	nodelay(stdscr, true);
 	getmaxyx(stdscr, r_scry, r_scrx );
 /*	if ( r_scrx < this->_scr_x || r_scry < this->_scr_y )
@@ -126,28 +139,50 @@ void Game::g_place( void )
 	mvaddch(Game::p1->getPosY(), Game::p1->getPosX() + 2, '>' | COLOR_PAIR(1));
 	mvaddch(Game::p1->getPosY() + 1, Game::p1->getPosX(), ACS_BTEE | COLOR_PAIR(1));
 
-	// d
+	// display game Info
 	mvaddstr(2, 4, "Score");// | COLOR_PAIR(1));
 	char const * str_score = std::to_string(score).c_str();
 	mvaddstr(2, 11, str_score);
-	mvaddstr(2, 20, "Life");// | COLOR_PAIR(1));
-	char const * str_life = std::to_string(_nb_life).c_str();
-	mvaddstr(2, 26, str_life);
+	mvaddstr(2, 20, "HP");// | COLOR_PAIR(1));
+	// char const * str_life = std::to_string(_nb_life).c_str();
+	if (_nb_life >= 5)
+		mvaddch(2, 30, '|' | COLOR_PAIR(4));
+	else
+		mvaddch(2, 30, ' ' | COLOR_PAIR(4));
+	if (_nb_life >= 4)
+		mvaddch(2, 29, '|' | COLOR_PAIR(4));
+	else
+		mvaddch(2, 29, ' ' | COLOR_PAIR(4));
+	if (_nb_life >= 3)
+		mvaddch(2, 28, '|' | COLOR_PAIR(4));
+	else
+		mvaddch(2, 28, ' ' | COLOR_PAIR(4));
+	if (_nb_life >= 2)
+		mvaddch(2, 27, '|' | COLOR_PAIR(5));
+	else
+		mvaddch(2, 27, ' ' | COLOR_PAIR(5));
+	if (_nb_life >= 1)
+		mvaddch(2, 26, '|' | COLOR_PAIR(6));
+	else
+		mvaddch(2, 26, ' ' | COLOR_PAIR(6));
+	// mvaddstr(2, 24, str_life);
 }
 
 void Game::g_refresh( void ) { // refresh ennemies et projectiles
 	t_en_obj *tmp_ennemies;
 	t_pro_obj *tmp_projec;
+	t_epro_obj *tmp_eprojec;
 
 	tmp_ennemies = Game::ennemy_list;
 	tmp_projec = Game::projec_list;
+	tmp_eprojec = Game::eprojec_list;
 	while (tmp_ennemies)
 	{
 		mvaddch(tmp_ennemies->obj->getPosY(), tmp_ennemies->obj->getPosX(), ' ' | COLOR_PAIR(1));
 		tmp_ennemies->obj->setPosX(tmp_ennemies->obj->getPosX() + tmp_ennemies->obj->getvecX());
 		tmp_ennemies->obj->setPosY(tmp_ennemies->obj->getPosY() + tmp_ennemies->obj->getvecY());
 		mvaddch(tmp_ennemies->obj->getPosY(), tmp_ennemies->obj->getPosX(), tmp_ennemies->obj->getDisplay() | COLOR_PAIR(1));
-		// shoot ennemy;
+		tmp_ennemies->obj->shoot();
 		tmp_ennemies = tmp_ennemies->next;
 	}
 	while (tmp_projec)
@@ -157,6 +192,14 @@ void Game::g_refresh( void ) { // refresh ennemies et projectiles
 		tmp_projec->obj->setPosY(tmp_projec->obj->getPosY() + tmp_projec->obj->getvecY());
 		mvaddch(tmp_projec->obj->getPosY(), tmp_projec->obj->getPosX(), tmp_projec->obj->getDisplay() | COLOR_PAIR(2));
 		tmp_projec = tmp_projec->next;
+	}
+		while (tmp_eprojec)
+	{
+		mvaddch(tmp_eprojec->obj->getPosY(), tmp_eprojec->obj->getPosX(), ' ' | COLOR_PAIR(3));
+		tmp_eprojec->obj->setPosX(tmp_eprojec->obj->getPosX() + tmp_eprojec->obj->getvecX());
+		tmp_eprojec->obj->setPosY(tmp_eprojec->obj->getPosY() + tmp_eprojec->obj->getvecY());
+		mvaddch(tmp_eprojec->obj->getPosY(), tmp_eprojec->obj->getPosX(), tmp_eprojec->obj->getDisplay() | COLOR_PAIR(3));
+		tmp_eprojec = tmp_eprojec->next;
 	}
 }
 

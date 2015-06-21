@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Projectile.hpp                                     :+:      :+:    :+:   */
+/*   Eprojectile.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ajulien <ajulien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/06/20 18:37:55 by ajulien           #+#    #+#             */
-/*   Updated: 2015/06/21 17:11:34 by ajulien          ###   ########.fr       */
+/*   Created: 2015/06/21 17:01:13 by ajulien           #+#    #+#             */
+/*   Updated: 2015/06/21 17:31:51 by ajulien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#ifndef PROJECTILE_HPP
-# define PROJECTILE_HPP
+#ifndef EPROJECTILE_HPP
+# define EPROJECTILE_HPP
 # include "ft_retro.hpp"
 
-class Projectile : public AEntity
+class Eprojectile : public AEntity
 {
 	public:
-		Projectile( int x, int y, char c );
-		Projectile( Projectile const &src );
-		virtual ~Projectile( void );
-		Projectile & operator=( Projectile const &rhs );
+		Eprojectile( int x, int y, char c );
+		Eprojectile( Eprojectile const &src );
+		virtual ~Eprojectile( void );
+		Eprojectile & operator=( Eprojectile const &rhs );
 		void die( void );
 	private:
-		t_pro_obj	* _n;
+		t_epro_obj	* _n;
 		void	shoot( void );
-		Projectile( void );
+		Eprojectile( void );
 };
 
 #endif
