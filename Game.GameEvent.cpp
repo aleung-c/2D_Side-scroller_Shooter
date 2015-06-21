@@ -6,7 +6,7 @@
 /*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 18:31:44 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/06/21 16:22:41 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/06/21 17:42:01 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,10 @@ void Game::GameEvents() {
 	{
 		if (tmp_proj->obj->getPosX() == MAX_X - 1)
 		{
-			mvaddch(tmp_proj->obj->getPosY(), tmp_proj->obj->getPosX(), ' ');
+			mvaddch(tmp_proj->obj->getPosY(), tmp_proj->obj->getPosX(), ' ' | COLOR_PAIR(1));
 			tmp_proj->obj->die();
 			delete tmp_proj->obj;
 			delete tmp_proj;
-			// tmp_proj = Game::projec_list;
-			// delete tmp_proj;
 		}
 		tmp_proj = tmp_proj->next;
 	}	
@@ -51,6 +49,7 @@ void Game::check_PlayerEvents( void ) {
 				&& Game::p1->getPosY() == tmp_enn->obj->getPosY())
 			{
 				sleep(1);
+				takeDamage();
 				// call die player.
 				//std::cout << "Collision ennemy !" << std::endl;
 			}
@@ -63,7 +62,7 @@ void Game::check_EnnemyEvents(t_en_obj * ennemy) {
 
 	if (ennemy->obj->getPosX() == MIN_X + 1)
 	{
-		mvaddch(ennemy->obj->getPosY(), ennemy->obj->getPosX(), ' ');
+		mvaddch(ennemy->obj->getPosY(), ennemy->obj->getPosX(), ' ' | COLOR_PAIR(1));
 		ennemy->obj->die();
 		delete ennemy->obj;
 		delete ennemy;
@@ -78,40 +77,16 @@ void Game::check_EnnemyEvents(t_en_obj * ennemy) {
 			&&  ennemy->obj->getPosY() == tmp_proj->obj->getPosY())
 		{
 			// sleep(1);
-			mvaddch(ennemy->obj->getPosY(), ennemy->obj->getPosX(), ' ');
+			mvaddch(ennemy->obj->getPosY(), ennemy->obj->getPosX(), ' ' | COLOR_PAIR(1));
 			ennemy->obj->die();
-			mvaddch(tmp_proj->obj->getPosY(), tmp_proj->obj->getPosX(), ' ');
+			mvaddch(tmp_proj->obj->getPosY(), tmp_proj->obj->getPosX(), ' ' | COLOR_PAIR(1));
 			tmp_proj->obj->die();
 			delete ennemy->obj;
 			//delete ennemy;
 			delete tmp_proj->obj;
 			// delete tmp_proj;
 			return ;
-			
-			// tmp_proj = Game::projec_list;
-			// delete tmp_proj;
-			// call die player.
-			//std::cout << "Collision projectile - ennemy !" << std::endl;
 		}
 		tmp_proj = tmp_proj->next;
 	}
 }
-
-// void Game::check_ProjectileEvents(AEntity *projectile) {
-// 	t_en_obj *tmp;
-
-// 	tmp = Game::obj_list;
-// 	while (tmp)
-// 	{
-// 			if (projectile->getPosX() == MAX_X )
-// 			{
-// 				// sleep(1);
-// 				mvaddch(projectile->getPosY(), projectile->getPosX(), ' ');
-// 				projectile->die();
-// 				delete projectile;
-// 				// call die player.
-// 				//std::cout << "Collision projectile - ennemy !" << std::endl;
-// 			}
-// 		tmp = tmp->next;
-// 	}
-// }

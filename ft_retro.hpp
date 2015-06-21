@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_retro.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajulien <ajulien@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 10:18:21 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/06/21 13:50:54 by ajulien          ###   ########.fr       */
+/*   Updated: 2015/06/21 17:00:59 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 // lib includes.
 
 // zone jouable  des elements //
-# define MAX_Y 35
-# define MIN_Y 5
-# define MAX_X 139
-# define MIN_X 1
+# define MAX_Y 33
+# define MIN_Y 6
+# define MAX_X 136
+# define MIN_X 3
 
 # include <iostream>
 # include <string>

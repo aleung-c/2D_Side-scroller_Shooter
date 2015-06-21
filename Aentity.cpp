@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Aentity.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajulien <ajulien@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 12:46:15 by ajulien           #+#    #+#             */
-/*   Updated: 2015/06/21 13:59:06 by ajulien          ###   ########.fr       */
+/*   Updated: 2015/06/21 16:59:42 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,8 @@ bool		AEntity::setPosY(int y)
 		posY = MAX_Y;
 		return false;
 	}
-	if (y < MIN_Y){
-		posY = MIN_Y;
+	if (y < MIN_Y ){
+		posY = MIN_Y ;
 		return false;
 	}
 	this->posY = y;

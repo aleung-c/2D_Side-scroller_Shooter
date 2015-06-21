@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajulien <ajulien@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 10:17:43 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/06/21 15:07:29 by ajulien          ###   ########.fr       */
+/*   Updated: 2015/06/21 17:39:39 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void ft_retro( void )
 			usleep(100);
 			i++;
 			game.g_check_getch();
-			game.g_place(); // place player;
+			game.g_place(); // place player and score;
 			if (i == 300 || i == 900 || i == 600)
 			{
 				game.g_refresh();
@@ -50,10 +50,7 @@ void ft_retro( void )
 				Game::shoot_delay = 0;
 				i =0;
 			}
-
-
 			// clear();
-
 			refresh();
 	}
 	endwin();

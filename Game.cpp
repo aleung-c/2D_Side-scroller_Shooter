@@ -6,14 +6,14 @@
 /*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 11:07:54 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/06/21 15:12:17 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/06/21 17:40:51 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_retro.hpp"
 
 int Game::shoot_delay = 1;
-Player * Game::p1 = new Player(10, 20, 'P');
+Player * Game::p1 = new Player(10, 20, 'o');
 
 // init and canon ft //
 int Game::score = 0;
@@ -68,8 +68,9 @@ void Game::init( void ) {
 	initscr();
 	noecho();
 	curs_set(0);
-//	halfdelay(1);
-	// timeout(200);
+	start_color();
+	init_pair(1, COLOR_BLACK, COLOR_CYAN);
+	init_pair(2, COLOR_BLUE, COLOR_CYAN);
 	nodelay(stdscr, true);
 	getmaxyx(stdscr, r_scry, r_scrx );
 /*	if ( r_scrx < this->_scr_x || r_scry < this->_scr_y )
@@ -96,11 +97,14 @@ void Game::write_borders( void ) {
 		while (c_x < this->get_scr_x())
 		{
 			if (c_y == 0 || c_y == (this->get_scr_y() - 1) || (c_y == 4 && (c_x != 0 && c_x != get_scr_x() - 1)))
-				this->_display << "-";
-			else if (c_x == 0 || c_x == (this->get_scr_x() - 1))
-				this->_display << "|";
-			else
 				this->_display << " ";
+			else if (c_x == 0 || c_x == (this->get_scr_x() - 1))
+				this->_display << " ";
+			else if (c_y > 4)
+				mvaddch(c_y, c_x, ' ' | COLOR_PAIR(1));
+			else
+				mvaddch(c_y, c_x, ' ');
+				//this->_display << " ";
 			c_x++;
 		}
 		if (c_x == this->get_scr_x())
@@ -114,7 +118,21 @@ void Game::write_borders( void ) {
 
 void Game::g_place( void )
 {
-	mvaddch(Game::p1->getPosY(), Game::p1->getPosX(), Game::p1->getDisplay());
+	mvaddch(Game::p1->getPosY() - 1, Game::p1->getPosX(), ACS_TTEE | COLOR_PAIR(1));
+	mvaddch(Game::p1->getPosY(), Game::p1->getPosX(), 'o' | COLOR_PAIR(1));
+	mvaddch(Game::p1->getPosY(), Game::p1->getPosX() - 1, ' ' | COLOR_PAIR(1));
+	mvaddch(Game::p1->getPosY(), Game::p1->getPosX() - 2, '=' | COLOR_PAIR(1));
+	mvaddch(Game::p1->getPosY(), Game::p1->getPosX() + 1, ' ' | COLOR_PAIR(1));
+	mvaddch(Game::p1->getPosY(), Game::p1->getPosX() + 2, '>' | COLOR_PAIR(1));
+	mvaddch(Game::p1->getPosY() + 1, Game::p1->getPosX(), ACS_BTEE | COLOR_PAIR(1));
+
+	// d
+	mvaddstr(2, 4, "Score");// | COLOR_PAIR(1));
+	char const * str_score = std::to_string(score).c_str();
+	mvaddstr(2, 11, str_score);
+	mvaddstr(2, 20, "Life");// | COLOR_PAIR(1));
+	char const * str_life = std::to_string(_nb_life).c_str();
+	mvaddstr(2, 26, str_life);
 }
 
 void Game::g_refresh( void ) { // refresh ennemies et projectiles
@@ -125,18 +143,19 @@ void Game::g_refresh( void ) { // refresh ennemies et projectiles
 	tmp_projec = Game::projec_list;
 	while (tmp_ennemies)
 	{
-		mvaddch(tmp_ennemies->obj->getPosY(), tmp_ennemies->obj->getPosX(), ' ');
+		mvaddch(tmp_ennemies->obj->getPosY(), tmp_ennemies->obj->getPosX(), ' ' | COLOR_PAIR(1));
 		tmp_ennemies->obj->setPosX(tmp_ennemies->obj->getPosX() + tmp_ennemies->obj->getvecX());
 		tmp_ennemies->obj->setPosY(tmp_ennemies->obj->getPosY() + tmp_ennemies->obj->getvecY());
-		mvaddch(tmp_ennemies->obj->getPosY(), tmp_ennemies->obj->getPosX(), tmp_ennemies->obj->getDisplay());
+		mvaddch(tmp_ennemies->obj->getPosY(), tmp_ennemies->obj->getPosX(), tmp_ennemies->obj->getDisplay() | COLOR_PAIR(1));
+		// shoot ennemy;
 		tmp_ennemies = tmp_ennemies->next;
 	}
 	while (tmp_projec)
 	{
-		mvaddch(tmp_projec->obj->getPosY(), tmp_projec->obj->getPosX(), ' ');
+		mvaddch(tmp_projec->obj->getPosY(), tmp_projec->obj->getPosX(), ' ' | COLOR_PAIR(1));
 		tmp_projec->obj->setPosX(tmp_projec->obj->getPosX() + tmp_projec->obj->getvecX());
 		tmp_projec->obj->setPosY(tmp_projec->obj->getPosY() + tmp_projec->obj->getvecY());
-		mvaddch(tmp_projec->obj->getPosY(), tmp_projec->obj->getPosX(), tmp_projec->obj->getDisplay());
+		mvaddch(tmp_projec->obj->getPosY(), tmp_projec->obj->getPosX(), tmp_projec->obj->getDisplay() | COLOR_PAIR(2));
 		tmp_projec = tmp_projec->next;
 	}
 }
@@ -147,22 +166,46 @@ void Game::g_check_getch( void ) {
 	key = getch();
 	if (key == 65) // UP
 	{
-		mvaddch(Game::p1->getPosY(), Game::p1->getPosX(), ' ');
+		mvaddch(Game::p1->getPosY(), Game::p1->getPosX(), ' ' | COLOR_PAIR(1));
+		mvaddch(Game::p1->getPosY(), Game::p1->getPosX() + 1, ' ' | COLOR_PAIR(1));
+		mvaddch(Game::p1->getPosY(), Game::p1->getPosX() + 2, ' ' | COLOR_PAIR(1));
+		mvaddch(Game::p1->getPosY(), Game::p1->getPosX() - 1, ' ' | COLOR_PAIR(1));
+		mvaddch(Game::p1->getPosY(), Game::p1->getPosX() - 2, ' ' | COLOR_PAIR(1));	
+		mvaddch(Game::p1->getPosY() + 1, Game::p1->getPosX(), ' ' | COLOR_PAIR(1));
+		mvaddch(Game::p1->getPosY() - 1, Game::p1->getPosX(), ' ' | COLOR_PAIR(1));
 		Game::p1->setPosY(Game::p1->getPosY() - 1 );
 	}
 	else if (key == 66) // DOWN
 	{
-		mvaddch(Game::p1->getPosY(), Game::p1->getPosX(), ' ');
+		mvaddch(Game::p1->getPosY(), Game::p1->getPosX(), ' ' | COLOR_PAIR(1));
+		mvaddch(Game::p1->getPosY(), Game::p1->getPosX() + 1, ' ' | COLOR_PAIR(1));
+		mvaddch(Game::p1->getPosY(), Game::p1->getPosX() + 2, ' ' | COLOR_PAIR(1));
+		mvaddch(Game::p1->getPosY(), Game::p1->getPosX() - 1, ' ' | COLOR_PAIR(1));
+		mvaddch(Game::p1->getPosY(), Game::p1->getPosX() - 2, ' ' | COLOR_PAIR(1));		
+		mvaddch(Game::p1->getPosY() + 1, Game::p1->getPosX(), ' ' | COLOR_PAIR(1));
+		mvaddch(Game::p1->getPosY() - 1, Game::p1->getPosX(), ' ' | COLOR_PAIR(1));
 		Game::p1->setPosY(Game::p1->getPosY() + 1 );
 	}
 	else if (key == 67) // RIGHT
 	{
-		mvaddch(Game::p1->getPosY(), Game::p1->getPosX(), ' ');
+		mvaddch(Game::p1->getPosY(), Game::p1->getPosX(), ' ' | COLOR_PAIR(1));
+		mvaddch(Game::p1->getPosY(), Game::p1->getPosX() + 1, ' ' | COLOR_PAIR(1));
+		mvaddch(Game::p1->getPosY(), Game::p1->getPosX() + 2, ' ' | COLOR_PAIR(1));
+		mvaddch(Game::p1->getPosY(), Game::p1->getPosX() - 1, ' ' | COLOR_PAIR(1));
+		mvaddch(Game::p1->getPosY(), Game::p1->getPosX() - 2, ' ' | COLOR_PAIR(1));		
+		mvaddch(Game::p1->getPosY() + 1, Game::p1->getPosX(), ' ' | COLOR_PAIR(1));
+		mvaddch(Game::p1->getPosY() - 1, Game::p1->getPosX(), ' ' | COLOR_PAIR(1));
 		Game::p1->setPosX(Game::p1->getPosX() + 1 );
 	}
 	else if (key == 68) // RIGHT
 	{
-		mvaddch(Game::p1->getPosY(), Game::p1->getPosX(), ' ');
+		mvaddch(Game::p1->getPosY(), Game::p1->getPosX(), ' ' | COLOR_PAIR(1));
+		mvaddch(Game::p1->getPosY(), Game::p1->getPosX() + 1, ' ' | COLOR_PAIR(1));
+		mvaddch(Game::p1->getPosY(), Game::p1->getPosX() + 2, ' ' | COLOR_PAIR(1));
+		mvaddch(Game::p1->getPosY(), Game::p1->getPosX() - 1, ' ' | COLOR_PAIR(1));
+		mvaddch(Game::p1->getPosY(), Game::p1->getPosX() - 2, ' ' | COLOR_PAIR(1));	
+		mvaddch(Game::p1->getPosY() + 1, Game::p1->getPosX(), ' ' | COLOR_PAIR(1));
+		mvaddch(Game::p1->getPosY() - 1, Game::p1->getPosX(), ' ' | COLOR_PAIR(1));
 		Game::p1->setPosX(Game::p1->getPosX() - 1 );
 	}
 	else if (key == ' ') // space
@@ -177,6 +220,13 @@ void Game::g_check_getch( void ) {
 }
 void	Game::takeDamage(){
 	set_nb_life(_nb_life -1);
+	if (get_nb_life() == 0)
+	{
+		clear();
+		std::cout << " GAME OVER " << std::endl;
+		sleep(5);
+		exit(0);
+	} 
 }
 // accessors //
 
