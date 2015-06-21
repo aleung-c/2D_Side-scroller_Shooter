@@ -6,7 +6,7 @@
 /*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 18:31:44 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/06/21 18:21:53 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/06/21 18:55:37 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,32 @@ void Game::GameEvents() {
 	t_en_obj *tmp_enn;
 	t_pro_obj *tmp_proj;
 	t_epro_obj *tmp_eproj;
+	t_bg_obj *tmp_bg;
 
 	tmp_enn = Game::ennemy_list;
 	tmp_proj = Game::projec_list;
 	tmp_eproj = Game::eprojec_list;
+	tmp_bg = Game::background_list;
+	while (tmp_bg)
+	{
+		if (tmp_bg->obj->getPosX() == MIN_X)
+		{
+			mvaddch(tmp_bg->obj->getPosY(), tmp_bg->obj->getPosX() + 1, ' ' | COLOR_PAIR(1));
+			mvaddch(tmp_bg->obj->getPosY() - 1, tmp_bg->obj->getPosX() + 1, ' ' | COLOR_PAIR(1));
+			mvaddch(tmp_bg->obj->getPosY() + 1, tmp_bg->obj->getPosX() + 1, ' ' | COLOR_PAIR(1));
+			mvaddch(tmp_bg->obj->getPosY(), tmp_bg->obj->getPosX() + 2, ' ' | COLOR_PAIR(1));
+			mvaddch(tmp_bg->obj->getPosY() - 1, tmp_bg->obj->getPosX(), ' ' | COLOR_PAIR(1));
+			mvaddch(tmp_bg->obj->getPosY() + 1, tmp_bg->obj->getPosX(), ' ' | COLOR_PAIR(1));
+			mvaddch(tmp_bg->obj->getPosY(), tmp_bg->obj->getPosX() - 1, ' ' | COLOR_PAIR(1));
+			mvaddch(tmp_bg->obj->getPosY() + 1, tmp_bg->obj->getPosX() - 1, ' ' | COLOR_PAIR(1));
+			mvaddch(tmp_bg->obj->getPosY() - 1, tmp_bg->obj->getPosX() - 1, ' ' | COLOR_PAIR(1));
+			mvaddch(tmp_bg->obj->getPosY(), tmp_bg->obj->getPosX() - 2, ' ' | COLOR_PAIR(1));
+			mvaddch(tmp_bg->obj->getPosY(), tmp_bg->obj->getPosX(), ' ' | COLOR_PAIR(1));
+			tmp_bg->obj->die();
+			delete tmp_bg->obj;
+		}
+		tmp_bg = tmp_bg->next;
+	}
 	while (tmp_proj)
 	{
 		if (tmp_proj->obj->getPosX() == MAX_X - 1)

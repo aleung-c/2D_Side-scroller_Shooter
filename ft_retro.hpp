@@ -6,7 +6,7 @@
 /*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 10:18:21 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/06/21 17:43:46 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/06/21 18:36:16 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ class Ennemy;
 class Player;
 class Game;
 class Eprojectile;
+class Background;
 
 typedef struct			s_en_obj {
 	Ennemy *			obj;
@@ -54,6 +55,12 @@ typedef struct			s_epro_obj {
 	struct s_epro_obj	*prev;
 }						t_epro_obj;
 
+typedef struct			s_bg_obj {
+	Background *			obj;
+	struct s_bg_obj	*next;
+	struct s_bg_obj	*prev;
+}						t_bg_obj;
+
 // Class includes.
 # include "AEntity.hpp"
 # include "Projectile.hpp"
@@ -61,7 +68,7 @@ typedef struct			s_epro_obj {
 # include "Player.hpp"
 # include "Game.hpp"
 # include "Eprojectile.hpp"
-
+# include "Background.hpp"
 
 
 // functions.

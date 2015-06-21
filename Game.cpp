@@ -6,7 +6,7 @@
 /*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 11:07:54 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/06/21 18:16:49 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/06/21 19:04:02 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,20 @@ void	Game::spawn() {
 	}
 }
 
+void	Game::spawn_background() {
+	int i;
+
+	i = rand() % 600;
+	if (i  == 10)
+	{
+		Background *	nuage = new Background(MAX_X - 1, 10, '*');
+		nuage->setPosY(rand() % MAX_Y);
+		if (nuage)
+			return;
+	}
+}
+
+
 // Game class functions //
 
 t_en_obj * Game::ennemy_list = NULL;
@@ -69,6 +83,9 @@ t_pro_obj * Game::projec_list_last  = Game::projec_list;
 
 t_epro_obj * Game::eprojec_list = NULL;
 t_epro_obj * Game::eprojec_list_last  = Game::eprojec_list;
+
+t_bg_obj * Game::background_list = NULL;
+t_bg_obj * Game::background_list_last  = Game::background_list;
 
 void Game::init( void ) {
 	int r_scrx; // real values of the screen; user inputed;
@@ -84,9 +101,10 @@ void Game::init( void ) {
 	init_pair(4, COLOR_GREEN, COLOR_BLACK);
 	init_pair(5, COLOR_YELLOW, COLOR_BLACK);
 	init_pair(6, COLOR_RED, COLOR_BLACK);
+	init_pair(7, COLOR_WHITE, COLOR_CYAN);
 	nodelay(stdscr, true);
 	getmaxyx(stdscr, r_scry, r_scrx );
-/*	if ( r_scrx < this->_scr_x || r_scry < this->_scr_y )
+	if ( r_scrx < this->_scr_x || r_scry < this->_scr_y )
 	{
 		std::cout << r_scrx << std::endl;
 		std::cout << "Screen too small to launch game"
@@ -95,7 +113,7 @@ void Game::init( void ) {
 				<< "Required size = " << this->_scr_x << "x " << this->_scr_y << "y."
 				<< std::endl;
 		exit(-1);
-	}*/
+	}
 	this->write_borders(); // Affiche une bordure !
 	refresh();
 }
@@ -172,11 +190,51 @@ void Game::g_refresh( void ) { // refresh ennemies et projectiles
 	t_en_obj *tmp_ennemies;
 	t_pro_obj *tmp_projec;
 	t_epro_obj *tmp_eprojec;
+	t_bg_obj *tmp_bg;
 
 	tmp_ennemies = Game::ennemy_list;
 	tmp_projec = Game::projec_list;
 	tmp_eprojec = Game::eprojec_list;
-	while (tmp_ennemies)
+	tmp_bg = Game::background_list;
+	while (tmp_bg) // display nuages
+	{
+		mvaddch(tmp_bg->obj->getPosY(), tmp_bg->obj->getPosX(), ' ' | COLOR_PAIR(7));
+		mvaddch(tmp_bg->obj->getPosY(), tmp_bg->obj->getPosX() + 1, ' ' | COLOR_PAIR(7));
+		mvaddch(tmp_bg->obj->getPosY(), tmp_bg->obj->getPosX() + 2, ' ' | COLOR_PAIR(7));
+		mvaddch(tmp_bg->obj->getPosY(), tmp_bg->obj->getPosX() - 1, ' ' | COLOR_PAIR(7));
+		mvaddch(tmp_bg->obj->getPosY(), tmp_bg->obj->getPosX() - 2, ' ' | COLOR_PAIR(7));
+		mvaddch(tmp_bg->obj->getPosY(), tmp_bg->obj->getPosX(), ' ' | COLOR_PAIR(7));
+		mvaddch(tmp_bg->obj->getPosY() + 1, tmp_bg->obj->getPosX(), ' ' | COLOR_PAIR(7));
+		mvaddch(tmp_bg->obj->getPosY() - 1, tmp_bg->obj->getPosX(), ' ' | COLOR_PAIR(7));
+		mvaddch(tmp_bg->obj->getPosY() - 1, tmp_bg->obj->getPosX() - 1, ' ' | COLOR_PAIR(7));
+		mvaddch(tmp_bg->obj->getPosY() - 1, tmp_bg->obj->getPosX() + 1, ' ' | COLOR_PAIR(7));
+		mvaddch(tmp_bg->obj->getPosY() + 1, tmp_bg->obj->getPosX() - 1, ' ' | COLOR_PAIR(7));
+		mvaddch(tmp_bg->obj->getPosY() + 1, tmp_bg->obj->getPosX() + 1, ' ' | COLOR_PAIR(7));
+		tmp_bg->obj->setPosX(tmp_bg->obj->getPosX() + tmp_bg->obj->getvecX());
+		tmp_bg->obj->setPosY(tmp_bg->obj->getPosY() + tmp_bg->obj->getvecY());
+		mvaddch(tmp_bg->obj->getPosY(), tmp_bg->obj->getPosX(), tmp_bg->obj->getDisplay() | COLOR_PAIR(7));
+		mvaddch(tmp_bg->obj->getPosY(), tmp_bg->obj->getPosX() + 1, tmp_bg->obj->getDisplay() | COLOR_PAIR(7));
+		mvaddch(tmp_bg->obj->getPosY(), tmp_bg->obj->getPosX() + 2, tmp_bg->obj->getDisplay() | COLOR_PAIR(7));
+		mvaddch(tmp_bg->obj->getPosY(), tmp_bg->obj->getPosX() - 1, tmp_bg->obj->getDisplay() | COLOR_PAIR(7));
+		mvaddch(tmp_bg->obj->getPosY(), tmp_bg->obj->getPosX() - 2, tmp_bg->obj->getDisplay() | COLOR_PAIR(7));
+		mvaddch(tmp_bg->obj->getPosY(), tmp_bg->obj->getPosX(), tmp_bg->obj->getDisplay() | COLOR_PAIR(7));
+		mvaddch(tmp_bg->obj->getPosY() + 1, tmp_bg->obj->getPosX(), tmp_bg->obj->getDisplay() | COLOR_PAIR(7));
+		mvaddch(tmp_bg->obj->getPosY() - 1, tmp_bg->obj->getPosX(), tmp_bg->obj->getDisplay() | COLOR_PAIR(7));
+		mvaddch(tmp_bg->obj->getPosY() - 1, tmp_bg->obj->getPosX() - 1, tmp_bg->obj->getDisplay() | COLOR_PAIR(7));
+		mvaddch(tmp_bg->obj->getPosY() - 1, tmp_bg->obj->getPosX() + 1, tmp_bg->obj->getDisplay() | COLOR_PAIR(7));
+		mvaddch(tmp_bg->obj->getPosY() + 1, tmp_bg->obj->getPosX() - 1, tmp_bg->obj->getDisplay() | COLOR_PAIR(7));
+		mvaddch(tmp_bg->obj->getPosY() + 1, tmp_bg->obj->getPosX() + 1, tmp_bg->obj->getDisplay() | COLOR_PAIR(7));
+		tmp_bg = tmp_bg->next;
+	}
+	while (tmp_projec) // display player projectiles
+	{
+		mvaddch(tmp_projec->obj->getPosY(), tmp_projec->obj->getPosX(), ' ' | COLOR_PAIR(1));
+		tmp_projec->obj->setPosX(tmp_projec->obj->getPosX() + tmp_projec->obj->getvecX());
+		tmp_projec->obj->setPosY(tmp_projec->obj->getPosY() + tmp_projec->obj->getvecY());
+		mvaddch(tmp_projec->obj->getPosY(), tmp_projec->obj->getPosX(), tmp_projec->obj->getDisplay() | COLOR_PAIR(2));
+		tmp_projec = tmp_projec->next;
+	}
+	while (tmp_ennemies) // display ennemy
 	{
 		mvaddch(tmp_ennemies->obj->getPosY(), tmp_ennemies->obj->getPosX(), ' ' | COLOR_PAIR(1));
 		tmp_ennemies->obj->setPosX(tmp_ennemies->obj->getPosX() + tmp_ennemies->obj->getvecX());
@@ -185,15 +243,7 @@ void Game::g_refresh( void ) { // refresh ennemies et projectiles
 		tmp_ennemies->obj->shoot();
 		tmp_ennemies = tmp_ennemies->next;
 	}
-	while (tmp_projec)
-	{
-		mvaddch(tmp_projec->obj->getPosY(), tmp_projec->obj->getPosX(), ' ' | COLOR_PAIR(1));
-		tmp_projec->obj->setPosX(tmp_projec->obj->getPosX() + tmp_projec->obj->getvecX());
-		tmp_projec->obj->setPosY(tmp_projec->obj->getPosY() + tmp_projec->obj->getvecY());
-		mvaddch(tmp_projec->obj->getPosY(), tmp_projec->obj->getPosX(), tmp_projec->obj->getDisplay() | COLOR_PAIR(2));
-		tmp_projec = tmp_projec->next;
-	}
-		while (tmp_eprojec)
+	while (tmp_eprojec) // display ennemy projectiles
 	{
 		mvaddch(tmp_eprojec->obj->getPosY(), tmp_eprojec->obj->getPosX(), ' ' | COLOR_PAIR(3));
 		tmp_eprojec->obj->setPosX(tmp_eprojec->obj->getPosX() + tmp_eprojec->obj->getvecX());
@@ -201,12 +251,17 @@ void Game::g_refresh( void ) { // refresh ennemies et projectiles
 		mvaddch(tmp_eprojec->obj->getPosY(), tmp_eprojec->obj->getPosX(), tmp_eprojec->obj->getDisplay() | COLOR_PAIR(3));
 		tmp_eprojec = tmp_eprojec->next;
 	}
+
 }
 
 void Game::g_check_getch( void ) {
 	int key;
 
 	key = getch();
+	if (key == KEY_RESIZE) // Protect resize
+	{
+		exit(-1);
+	}
 	if (key == 65) // UP
 	{
 		mvaddch(Game::p1->getPosY(), Game::p1->getPosX(), ' ' | COLOR_PAIR(1));

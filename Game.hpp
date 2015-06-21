@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Game.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajulien <ajulien@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 10:22:44 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/06/21 17:10:57 by ajulien          ###   ########.fr       */
+/*   Updated: 2015/06/21 18:33:17 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ class Game
 		void check_EnnemyEvents(t_en_obj * ennemy);
 		void check_ProjectileEvents(AEntity * ennemy);
 		void	spawn(); // ennemy spawn
+		void	spawn_background(); // spawn decors;
 		void	takeDamage();
 		// accessors //
 
@@ -63,6 +64,9 @@ class Game
 
 			static t_en_obj *	ennemy_list;
 			static t_en_obj *	ennemy_list_last;
+
+			static t_bg_obj *	background_list;
+			static t_bg_obj *	background_list_last;
 	private:
 
 
