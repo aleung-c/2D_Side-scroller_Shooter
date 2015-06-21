@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Game.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajulien <ajulien@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 11:07:54 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/06/21 15:07:41 by ajulien          ###   ########.fr       */
+/*   Updated: 2015/06/21 15:12:17 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ void Game::g_place( void )
 void Game::g_refresh( void ) { // refresh ennemies et projectiles
 	t_en_obj *tmp_ennemies;
 	t_pro_obj *tmp_projec;
+
 	tmp_ennemies = Game::ennemy_list;
 	tmp_projec = Game::projec_list;
 	while (tmp_ennemies)

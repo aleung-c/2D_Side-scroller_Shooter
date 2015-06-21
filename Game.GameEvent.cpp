@@ -6,7 +6,7 @@
 /*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 18:31:44 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/06/21 15:00:45 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/06/21 16:22:41 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,13 @@ void Game::GameEvents() {
 
 	while (tmp_proj)
 	{
-		if (tmp_proj->obj->getPosX() == MAX_X)
+		if (tmp_proj->obj->getPosX() == MAX_X - 1)
 		{
+			mvaddch(tmp_proj->obj->getPosY(), tmp_proj->obj->getPosX(), ' ');
 			tmp_proj->obj->die();
 			delete tmp_proj->obj;
-			tmp_proj = Game::projec_list;
+			delete tmp_proj;
+			// tmp_proj = Game::projec_list;
 			// delete tmp_proj;
 		}
 		tmp_proj = tmp_proj->next;
@@ -63,6 +65,7 @@ void Game::check_EnnemyEvents(t_en_obj * ennemy) {
 	{
 		mvaddch(ennemy->obj->getPosY(), ennemy->obj->getPosX(), ' ');
 		ennemy->obj->die();
+		delete ennemy->obj;
 		delete ennemy;
 		return ;
 	}
@@ -77,10 +80,15 @@ void Game::check_EnnemyEvents(t_en_obj * ennemy) {
 			// sleep(1);
 			mvaddch(ennemy->obj->getPosY(), ennemy->obj->getPosX(), ' ');
 			ennemy->obj->die();
+			mvaddch(tmp_proj->obj->getPosY(), tmp_proj->obj->getPosX(), ' ');
 			tmp_proj->obj->die();
 			delete ennemy->obj;
+			//delete ennemy;
 			delete tmp_proj->obj;
-			tmp_proj = Game::projec_list;
+			// delete tmp_proj;
+			return ;
+			
+			// tmp_proj = Game::projec_list;
 			// delete tmp_proj;
 			// call die player.
 			//std::cout << "Collision projectile - ennemy !" << std::endl;

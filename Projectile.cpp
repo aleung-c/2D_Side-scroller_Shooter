@@ -6,7 +6,7 @@
 /*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 18:40:38 by ajulien           #+#    #+#             */
-/*   Updated: 2015/06/21 15:00:09 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/06/21 16:25:55 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,19 @@ Projectile::~Projectile( void ) {
 }
 
 void	Projectile::die( void ) {
-	if (_n->prev)
-		_n->prev->next = _n->next;
+	// _n current;
+	if (Game::projec_list == _n)
+	{
+		Game::projec_list = _n->next;
+	}
+	if (Game::projec_list_last == _n)
+	{
+		Game::projec_list_last = _n->prev;
+	}
 	if (_n->next)
 		_n->next->prev = _n->prev;
+	if (_n->prev)
+		_n->prev->next = _n->next;
 
 	return ;
 }
