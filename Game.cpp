@@ -6,13 +6,14 @@
 /*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 11:07:54 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/06/21 13:59:16 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/06/21 14:42:11 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_retro.hpp"
 
 int Game::shoot_delay = 1;
+Player * Game::p1 = new Player(10, 20, 'P');
 
 // init and canon ft //
 
@@ -44,8 +45,10 @@ void	Game::spawn() {
 	i = rand() % 1000;
 	if (i == 20)
 	{
-		Ennemy *	ennemy = new Ennemy();
+		Ennemy *	ennemy = new Ennemy(MAX_X - 1, 10, 'X');
 		ennemy->setPosY(rand() % MAX_Y);
+		if (ennemy)
+			return;
 	}
 }
 
@@ -110,68 +113,61 @@ void Game::write_borders( void ) {
 
 void Game::g_place( void )
 {
-	t_ent_obj *tmp;
-
-	tmp = Game::obj_list;
-
-	while (tmp)
-	{
-		mvaddch(tmp->obj->getPosY(), tmp->obj->getPosX(), tmp->obj->getDisplay());
-		tmp = tmp->next;
-	}
-
+	mvaddch(Game::p1->getPosY(), Game::p1->getPosX(), Game::p1->getDisplay());
 }
 
-void Game::g_refresh( void ) {
-	t_ent_obj *tmp;
-
-	tmp = Game::obj_list;
-
-	while (tmp)
+void Game::g_refresh( void ) { // refresh ennemies et projectiles
+	t_en_obj *tmp_ennemies;
+	t_pro_obj *tmp_projec;
+	tmp_ennemies = Game::ennemy_list;
+	tmp_projec = Game::projec_list;
+	while (tmp_ennemies)
 	{
-		mvaddch(tmp->obj->getPosY(), tmp->obj->getPosX(), ' ');
-		tmp->obj->setPosX(tmp->obj->getPosX() + tmp->obj->getvecX());
-		// std::cout << tmp->obj->getvecX() << std::endl;
-		tmp->obj->setPosY(tmp->obj->getPosY() + tmp->obj->getvecY());
-
-		mvaddch(tmp->obj->getPosY(), tmp->obj->getPosX(), tmp->obj->getDisplay());
-		// move(tmp->obj->getPosY(), tmp->obj->getPosX());
-		// printw("%c", tmp->obj->getDisplay());
-		tmp = tmp->next;
+		mvaddch(tmp_ennemies->obj->getPosY(), tmp_ennemies->obj->getPosX(), ' ');
+		tmp_ennemies->obj->setPosX(tmp_ennemies->obj->getPosX() + tmp_ennemies->obj->getvecX());
+		tmp_ennemies->obj->setPosY(tmp_ennemies->obj->getPosY() + tmp_ennemies->obj->getvecY());
+		mvaddch(tmp_ennemies->obj->getPosY(), tmp_ennemies->obj->getPosX(), tmp_ennemies->obj->getDisplay());
+		tmp_ennemies = tmp_ennemies->next;
+	}
+	while (tmp_projec)
+	{
+		mvaddch(tmp_projec->obj->getPosY(), tmp_projec->obj->getPosX(), ' ');
+		tmp_projec->obj->setPosX(tmp_projec->obj->getPosX() + tmp_projec->obj->getvecX());
+		tmp_projec->obj->setPosY(tmp_projec->obj->getPosY() + tmp_projec->obj->getvecY());
+		mvaddch(tmp_projec->obj->getPosY(), tmp_projec->obj->getPosX(), tmp_projec->obj->getDisplay());
+		tmp_projec = tmp_projec->next;
 	}
 }
 
 void Game::g_check_getch( void ) {
 	int key;
-	t_ent_obj *tmp;
 
-	tmp = Game::obj_list;
 	key = getch();
-	if (key == 65 && tmp->obj->getType() == "Player") // UP
+	if (key == 65) // UP
 	{
-		mvaddch(tmp->obj->getPosY(), tmp->obj->getPosX(), ' ');
-		tmp->obj->setPosY(tmp->obj->getPosY() - 1 );
+		mvaddch(Game::p1->getPosY(), Game::p1->getPosX(), ' ');
+		Game::p1->setPosY(Game::p1->getPosY() - 1 );
 	}
-	else if (key == 66 && tmp->obj->getType() == "Player") // DOWN
+	else if (key == 66) // DOWN
 	{
-		mvaddch(tmp->obj->getPosY(), tmp->obj->getPosX(), ' ');
-		tmp->obj->setPosY(tmp->obj->getPosY() + 1 );
+		mvaddch(Game::p1->getPosY(), Game::p1->getPosX(), ' ');
+		Game::p1->setPosY(Game::p1->getPosY() + 1 );
 	}
-	else if (key == 67 && tmp->obj->getType() == "Player") // RIGHT
+	else if (key == 67) // RIGHT
 	{
-		mvaddch(tmp->obj->getPosY(), tmp->obj->getPosX(), ' ');
-		tmp->obj->setPosX(tmp->obj->getPosX() + 1 );
+		mvaddch(Game::p1->getPosY(), Game::p1->getPosX(), ' ');
+		Game::p1->setPosX(Game::p1->getPosX() + 1 );
 	}
-	else if (key == 68 && tmp->obj->getType() == "Player") // RIGHT
+	else if (key == 68) // RIGHT
 	{
-		mvaddch(tmp->obj->getPosY(), tmp->obj->getPosX(), ' ');
-		tmp->obj->setPosX(tmp->obj->getPosX() - 1 );
+		mvaddch(Game::p1->getPosY(), Game::p1->getPosX(), ' ');
+		Game::p1->setPosX(Game::p1->getPosX() - 1 );
 	}
-	else if (key == ' ' && tmp->obj->getType() == "Player") // space
+	else if (key == ' ') // space
 	{
-		// mvaddch(tmp->obj->getPosY(), tmp->obj->getPosX() + 1, '-');
+		// mvaddch(Game::p1->getPosY(), Game::p1->getPosX() + 1, '-');
 		if (Game::shoot_delay == 0)
-			tmp->obj->shoot();
+			Game::p1->shoot();
 		Game::shoot_delay = 1;
 		return ;
 	}

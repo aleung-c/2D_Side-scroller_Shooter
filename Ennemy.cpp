@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Ennemy.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajulien <ajulien@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 15:31:58 by ajulien           #+#    #+#             */
-/*   Updated: 2015/06/21 13:56:46 by ajulien          ###   ########.fr       */
+/*   Updated: 2015/06/21 15:00:21 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,10 @@ Ennemy::~Ennemy( void ) {
 }
 
 void	Ennemy::die( void ) {
-	_n->prev->next = _n->next;
-	if (_n->prev->next)
-	_n->next->prev = _n->prev;
+	if (_n->prev)
+		_n->prev->next = _n->next;
+	if (_n->next)
+		_n->next->prev = _n->prev;
 	return ;
 }
 

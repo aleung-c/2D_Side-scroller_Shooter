@@ -6,7 +6,7 @@
 /*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 18:40:38 by ajulien           #+#    #+#             */
-/*   Updated: 2015/06/21 13:59:34 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/06/21 15:00:09 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,11 @@ Projectile::~Projectile( void ) {
 }
 
 void	Projectile::die( void ) {
-	_n->prev->next = _n->next;
-	if (_n->prev->next)
-	_n->next->prev = _n->prev;
+	if (_n->prev)
+		_n->prev->next = _n->next;
+	if (_n->next)
+		_n->next->prev = _n->prev;
+
 	return ;
 }
 

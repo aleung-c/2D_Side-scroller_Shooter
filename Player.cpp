@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Player.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajulien <ajulien@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 11:43:19 by ajulien           #+#    #+#             */
-/*   Updated: 2015/06/21 14:01:27 by ajulien          ###   ########.fr       */
+/*   Updated: 2015/06/21 14:37:03 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ Player::Player( void )
 Player::Player( int x, int y, char c ) : AEntity(x, y, c) {
 	//std::cout << "Player set." << std::endl;
 	type = "Player";
-	Game::_p1 = *this;
+	Game::p1 = this;
 	return;
 }
 
@@ -31,6 +31,11 @@ Player::Player( Player const &src ) : AEntity(src) {
 }
 
 Player::~Player( void ) {
+	return ;
+}
+
+
+void Player::die() {
 	return ;
 }
 
