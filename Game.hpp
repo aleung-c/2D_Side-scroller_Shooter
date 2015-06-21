@@ -6,7 +6,7 @@
 /*   By: ajulien <ajulien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 10:22:44 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/06/21 13:57:55 by ajulien          ###   ########.fr       */
+/*   Updated: 2015/06/21 14:28:19 by ajulien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ class Game
 //		void check_EnnemyEvents(t_ent_obj * ennemy);
 		void check_ProjectileEvents(AEntity * ennemy);
 		void	spawn(); // ennemy spawn
+		void	takeDamage();
 		// accessors //
 
 			int get_scr_x( void ) const;
@@ -42,7 +43,6 @@ class Game
 			int get_init_scr_y( void ) const;
 			int get_scroll( void ) const;
 			int get_nb_life( void ) const;
-			int getScore();
 
 			void set_scr_x( int var );
 			void set_scr_y( int var );
@@ -50,15 +50,14 @@ class Game
 			void set_init_scr_y( int var );
 			void set_scroll( int var );
 			void set_nb_life( int var );
-			void setScore( int s);
 
-			static	Player & _p1 ;
+			static	Player &	p1 ;
+			static int			score;
+			static t_pro_obj *	projec_list;
+			static t_pro_obj *	projec_list_last;
 
-			static t_pro_obj * projec_list;
-			static t_pro_obj * projec_list_last;
-
-			static t_en_obj * ennemy_list;
-			static t_en_obj * ennemy_list_last;
+			static t_en_obj *	ennemy_list;
+			static t_en_obj *	ennemy_list_last;
 	private:
 
 
@@ -73,7 +72,7 @@ class Game
 
 		// game_var
 		int		_nb_life;
-		int	_score;
+
 };
 
 #endif

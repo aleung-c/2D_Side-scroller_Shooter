@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajulien <ajulien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 10:17:43 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/06/21 13:21:21 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/06/21 14:31:35 by ajulien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void ft_retro( void )
 {
 	Game		game;
-	
+
 	Player		player(8, 20, 'P'); // player class daughter of Entity
 
 	time_t rawtime;
@@ -29,7 +29,7 @@ void ft_retro( void )
 
 	game.init(); // start gamescreen et variables de jeu ( score, hp, etc etc );
 	game.g_place(/*, items*/);
-	
+
 	game.spawn();
 	// player.shoot();
 	while (1)
@@ -46,11 +46,11 @@ void ft_retro( void )
 			game.spawn();
 			if (i == 1000)
 			{
-			
+
 				i =0;
 			}
-			
-			
+
+
 			// clear();
 
 			refresh();

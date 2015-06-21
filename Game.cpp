@@ -6,7 +6,7 @@
 /*   By: ajulien <ajulien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 11:07:54 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/06/21 13:47:34 by ajulien          ###   ########.fr       */
+/*   Updated: 2015/06/21 14:31:16 by ajulien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 
 // init and canon ft //
+int Game::score = 0;
 
-Game::Game( void ) : _scr_x(140), _scr_y(36), _scroll(1), _nb_life(3), _score(0) {
+Game::Game( void ) : _scr_x(140), _scr_y(36), _scroll(1), _nb_life(3){
 	std::cout << "Game created." << std::endl;
 	getmaxyx(stdscr, this->_init_scr_y, this->_init_scr_x);
 	std::srand(time(0));
@@ -164,7 +165,9 @@ void Game::g_check_getch( void ) {
 	}
 	// std::cout << key << std::endl;
 }
-
+void	Game::takeDamage(){
+	set_nb_life(_nb_life -1);
+}
 // accessors //
 
 int Game::get_scr_x( void ) const {
@@ -189,14 +192,6 @@ int Game::get_scroll( void ) const {
 
 int Game::get_nb_life( void ) const {
 	return (this->_nb_life);
-}
-
-int Game::getScore(void){
-	return _score;
-}
-
-void Game::setScore(int i){
-	_score += i;
 }
 
 void Game::set_scr_x( int var ) {
