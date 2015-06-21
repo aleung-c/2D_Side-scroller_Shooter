@@ -6,7 +6,7 @@
 /*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 10:17:43 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/06/21 13:21:21 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/06/21 13:36:28 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ void ft_retro( void )
 	
 	game.spawn();
 	// player.shoot();
+
 	while (1)
 	{
 			usleep(100);
 			i++;
 			game.g_check_getch();
-
 			if (i == 300 || i == 900 || i == 600)
 			{
 				game.g_refresh();
@@ -46,7 +46,7 @@ void ft_retro( void )
 			game.spawn();
 			if (i == 1000)
 			{
-			
+				Game::shoot_delay = 0;
 				i =0;
 			}
 			

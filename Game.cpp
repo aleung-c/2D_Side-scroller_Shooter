@@ -6,12 +6,13 @@
 /*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 11:07:54 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/06/21 13:24:30 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/06/21 13:41:13 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_retro.hpp"
 
+int Game::shoot_delay = 1;
 
 // init and canon ft //
 
@@ -153,10 +154,22 @@ void Game::g_check_getch( void ) {
 		mvaddch(tmp->obj->getPosY(), tmp->obj->getPosX(), ' ');
 		tmp->obj->setPosY(tmp->obj->getPosY() + 1 );
 	}
+	else if (key == 67 && tmp->obj->getType() == "Player") // RIGHT
+	{
+		mvaddch(tmp->obj->getPosY(), tmp->obj->getPosX(), ' ');
+		tmp->obj->setPosX(tmp->obj->getPosX() + 1 );
+	}
+	else if (key == 68 && tmp->obj->getType() == "Player") // RIGHT
+	{
+		mvaddch(tmp->obj->getPosY(), tmp->obj->getPosX(), ' ');
+		tmp->obj->setPosX(tmp->obj->getPosX() - 1 );
+	}
 	else if (key == ' ' && tmp->obj->getType() == "Player") // space
 	{
 		// mvaddch(tmp->obj->getPosY(), tmp->obj->getPosX() + 1, '-');
-		tmp->obj->shoot();
+		if (Game::shoot_delay == 0)
+			tmp->obj->shoot();
+		Game::shoot_delay = 1;
 		return ;
 	}
 	// std::cout << key << std::endl;

@@ -6,7 +6,7 @@
 /*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 10:22:44 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/06/21 12:59:27 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/06/21 13:30:31 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ class Game
 			int get_scroll( void ) const;
 			int get_nb_life( void ) const;
 			int getScore();
+			int get_shoot_delay( void ) const;
 
 			void set_scr_x( int var );
 			void set_scr_y( int var );
@@ -54,7 +55,7 @@ class Game
 
 			static t_ent_obj * obj_list;
 			static t_ent_obj * obj_list_last;
-
+			static int shoot_delay;
 	private:
 
 
