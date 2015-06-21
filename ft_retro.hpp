@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_retro.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajulien <ajulien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 10:18:21 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/06/20 22:39:19 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/06/21 13:50:54 by ajulien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,22 @@
 # include <ctime>
 
 class AEntity;
-//class Projectile;
+class Projectile;
 class Ennemy;
 class Player;
 class Game;
 
-typedef struct			s_ent_obj {
-	AEntity *			obj;
-	struct s_ent_obj	*next;
-	struct s_ent_obj	*prev;
-}						t_ent_obj;
+typedef struct			s_en_obj {
+	Ennemy *			obj;
+	struct s_en_obj	*next;
+	struct s_en_obj	*prev;
+}						t_en_obj;
 
+typedef struct			s_pro_obj {
+	Projectile *			obj;
+	struct s_pro_obj	*next;
+	struct s_pro_obj	*prev;
+}						t_pro_obj;
 // Class includes.
 # include "AEntity.hpp"
 # include "Projectile.hpp"

@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   Game.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajulien <ajulien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 10:22:44 by aleung-c          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2015/06/21 13:30:31 by aleung-c         ###   ########.fr       */
+=======
+/*   Updated: 2015/06/21 13:57:55 by ajulien          ###   ########.fr       */
+>>>>>>> 8cdff525c4a51f702dd01d8f56e2b0cd801567c8
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +34,9 @@ class Game
 		void g_refresh( void );
 		void g_check_getch(); 	// check player touch et modifie les valeurs si touche pressed.
 		void GameEvents(); // Les events de jeu;
-			void check_PlayerEvents(AEntity * player);
-			void check_EnnemyEvents(t_ent_obj * ennemy);
-			void check_ProjectileEvents(AEntity * ennemy);
+		void check_PlayerEvents(AEntity * player);
+//		void check_EnnemyEvents(t_ent_obj * ennemy);
+		void check_ProjectileEvents(AEntity * ennemy);
 		void	spawn(); // ennemy spawn
 		// accessors //
 
@@ -53,13 +57,23 @@ class Game
 			void set_nb_life( int var );
 			void setScore( int s);
 
+<<<<<<< HEAD
 			static t_ent_obj * obj_list;
 			static t_ent_obj * obj_list_last;
 			static int shoot_delay;
+=======
+			static	Player & _p1 ;
+
+			static t_pro_obj * projec_list;
+			static t_pro_obj * projec_list_last;
+
+			static t_en_obj * ennemy_list;
+			static t_en_obj * ennemy_list_last;
+>>>>>>> 8cdff525c4a51f702dd01d8f56e2b0cd801567c8
 	private:
 
 
-		// game screen
+		// game screen;
 		int		_scr_x; // size x;
 		int		_scr_y; // size y;
 		int		_init_scr_x; // size shell initiale x;

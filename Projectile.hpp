@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Projectile.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajulien <ajulien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 18:37:55 by ajulien           #+#    #+#             */
-/*   Updated: 2015/06/20 22:56:06 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/06/21 13:53:23 by ajulien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ class Projectile : public AEntity
 		Projectile & operator=( Projectile const &rhs );
 		void die( void );
 	private:
+		t_pro_obj	* _n;
 		void	shoot( void );
 		Projectile( void );
 };
