@@ -6,7 +6,7 @@
 /*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 10:18:21 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/06/20 19:42:12 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/06/20 22:39:19 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # include <ctime>
 
 class AEntity;
-class Projectile;
+//class Projectile;
 class Ennemy;
 class Player;
 class Game;

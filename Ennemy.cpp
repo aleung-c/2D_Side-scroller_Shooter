@@ -6,7 +6,7 @@
 /*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 15:31:58 by ajulien           #+#    #+#             */
-/*   Updated: 2015/06/20 19:44:04 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/06/20 23:09:38 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,14 @@
 Ennemy::Ennemy( void ) : AEntity(10, 20, 'X')
 {
 	setvecX(-1);
+	this->type = "Ennemy";
+	this->display = 'X';
 	this->setPosX(MAX_X - 1);
 	return;
 }
 
 Ennemy::Ennemy( int x, int y, char c ) : AEntity(x, y, c){
+	type = "Ennemy";
 	setvecX(-1);
 	return;
 }

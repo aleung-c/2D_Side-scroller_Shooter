@@ -6,7 +6,7 @@
 /*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 11:07:54 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/06/20 19:42:47 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/06/20 23:19:21 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,9 @@ Game & Game::operator=( Game const &rhs ) {
 }
 
 // Content Related Fonction //
-void	Game::spawn(){
-	int i;
-
-	i = 0;
-	Ennemy *	ennemy = new Ennemy[5];
-	while (i < 5 )
-	{
-		ennemy[i].setPosY(rand() % MAX_Y);
-		i++;
-	}
+void	Game::spawn() {
+	Ennemy *	ennemy = new Ennemy();
+	ennemy->setPosY(rand() % MAX_Y);
 }
 
 // Game class functions //
@@ -61,9 +54,10 @@ void Game::init( void ) {
 	initscr();
 	noecho();
 	curs_set(0);
-	halfdelay(1);
+	 halfdelay(1);
+	//timeout(200);
 	getmaxyx(stdscr, r_scry, r_scrx );
-	if ( r_scrx < this->_scr_x || r_scry < this->_scr_y )
+/*	if ( r_scrx < this->_scr_x || r_scry < this->_scr_y )
 	{
 		std::cout << r_scrx << std::endl;
 		std::cout << "Screen too small to launch game"
@@ -72,7 +66,7 @@ void Game::init( void ) {
 				<< "Required size = " << this->_scr_x << "x " << this->_scr_y << "y."
 				<< std::endl;
 		exit(-1);
-	}
+	}*/
 	this->write_borders(); // Affiche une bordure !
 	refresh();
 }
@@ -114,6 +108,7 @@ void Game::g_place( void )
 		mvaddch(tmp->obj->getPosY(), tmp->obj->getPosX(), tmp->obj->getDisplay());
 		tmp = tmp->next;
 	}
+		
 }
 
 void Game::g_refresh( void ) {
@@ -133,7 +128,6 @@ void Game::g_refresh( void ) {
 		// printw("%c", tmp->obj->getDisplay());
 		tmp = tmp->next;
 	}
-
 }
 
 void Game::g_check_getch( void ) {
@@ -142,19 +136,20 @@ void Game::g_check_getch( void ) {
 
 	tmp = Game::obj_list;
 	key = getch();
-	if (key == 65 && tmp->obj->getType() == "Player")
+	if (key == 65 && tmp->obj->getType() == "Player") // UP
 	{
 		mvaddch(tmp->obj->getPosY(), tmp->obj->getPosX(), ' ');
 		tmp->obj->setPosY(tmp->obj->getPosY() - 1 );
 	}
-	else if (key == 66 && tmp->obj->getType() == "Player")
+	else if (key == 66 && tmp->obj->getType() == "Player") // DOWN
 	{
 		mvaddch(tmp->obj->getPosY(), tmp->obj->getPosX(), ' ');
 		tmp->obj->setPosY(tmp->obj->getPosY() + 1 );
 	}
-	else if (key == ' ' && tmp->obj->getType() == "Player")
+	else if (key == ' ' && tmp->obj->getType() == "Player") // space
 	{
-		mvaddch(tmp->obj->getPosY(), tmp->obj->getPosX() + 1, '-');
+		// mvaddch(tmp->obj->getPosY(), tmp->obj->getPosX() + 1, '-');
+		tmp->obj->shoot();
 	}
 	// std::cout << key << std::endl;
 }

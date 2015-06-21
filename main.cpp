@@ -6,7 +6,7 @@
 /*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 10:17:43 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/06/20 19:00:10 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/06/20 23:19:31 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,15 @@ void ft_retro( void )
 	// Ennemy and player have Projectile subclass.
 
 	game.init(); // start gamescreen et variables de jeu ( score, hp, etc etc );
-	game.g_place(/*, items*/);	
+	game.g_place(/*, items*/);
+	
 	game.spawn();
+	player.shoot();
 	while (1)
 	{
-			
+			game.spawn();
 			game.g_check_getch();
+			
 			usleep(1);
 			game.g_refresh();
 			game.GameEvents();

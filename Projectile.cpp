@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Projectile.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajulien <ajulien@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 18:40:38 by ajulien           #+#    #+#             */
-/*   Updated: 2015/06/20 19:31:30 by ajulien          ###   ########.fr       */
+/*   Updated: 2015/06/20 22:55:27 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ Projectile::Projectile( void ) : AEntity()
 
 Projectile::Projectile( int x, int y, char c ) : AEntity(x, y, c){
 	setvecX(1);
+	type = "Projectile";
 	return;
 }
 
@@ -27,6 +28,12 @@ Projectile::Projectile( Projectile const &src ) : AEntity(src) {
 }
 
 Projectile::~Projectile( void ) {
+	return ;
+}
+void	Projectile::die( void ) {
+	_n->prev->next = _n->next;
+	_n->next->prev = _n->prev;
+	delete this;
 	return ;
 }
 

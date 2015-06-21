@@ -6,7 +6,7 @@
 /*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 12:46:15 by ajulien           #+#    #+#             */
-/*   Updated: 2015/06/20 19:44:21 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/06/20 23:24:11 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,11 @@ AEntity &	AEntity::operator=(AEntity const & rhs){
 }
 
 void		AEntity::die(){
-	t_ent_obj	*tmp;
-
-	_n->prev->next = _n->next->prev;
-	delete this;
+	
+	_n->prev->next = _n->next;
+	if (_n->prev->next)
+		_n->next->prev = _n->prev;
+	// delete this;
 }
 
 int			AEntity::getPosX(){

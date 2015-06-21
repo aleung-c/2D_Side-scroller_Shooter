@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Player.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajulien <ajulien@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 11:42:39 by ajulien           #+#    #+#             */
-/*   Updated: 2015/06/20 16:19:09 by ajulien          ###   ########.fr       */
+/*   Updated: 2015/06/20 23:00:48 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ class Player : public AEntity
 		Player & operator=( Player const &rhs );
 
 		void	shoot( void );
+		
 	private:
 		Player( void );
 };

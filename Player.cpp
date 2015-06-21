@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   Player.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajulien <ajulien@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 11:43:19 by ajulien           #+#    #+#             */
-/*   Updated: 2015/06/20 19:39:19 by ajulien          ###   ########.fr       */
+/*   Updated: 2015/06/20 23:00:44 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_retro.hpp"
-
+#include "Projectile.hpp"
 Player::Player( void ) : AEntity(1, 20, 'P')
 {
 //	std::cout << "Player set." << std::endl;
@@ -44,5 +44,7 @@ Player & Player::operator=( Player const &rhs ) {
 
 void	Player::shoot( void ) {
 	Projectile *p = new Projectile(getPosX() + 1, getPosY(), '-');
+	if (p)
+	{}
 	return;
 }

@@ -6,7 +6,7 @@
 /*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 10:22:44 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/06/20 19:36:16 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/06/20 23:18:08 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ class Game
 		void g_check_getch(); 	// check player touch et modifie les valeurs si touche pressed.
 		void GameEvents(); // Les events de jeu;
 			void check_PlayerEvents(AEntity * player);
-			void check_EnnemyEvents(AEntity * player);
+			void check_EnnemyEvents(AEntity * ennemy);
+			void check_ProjectileEvents(AEntity * ennemy);
 		void	spawn(); // ennemy spawn
 		// accessors //
 
