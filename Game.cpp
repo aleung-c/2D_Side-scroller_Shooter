@@ -6,7 +6,7 @@
 /*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 11:07:54 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/06/20 23:19:21 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/06/21 13:24:30 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,14 @@ Game & Game::operator=( Game const &rhs ) {
 
 // Content Related Fonction //
 void	Game::spawn() {
-	Ennemy *	ennemy = new Ennemy();
-	ennemy->setPosY(rand() % MAX_Y);
+	int i;
+
+	i = rand() % 1000;
+	if (i == 20)
+	{
+		Ennemy *	ennemy = new Ennemy();
+		ennemy->setPosY(rand() % MAX_Y);
+	}
 }
 
 // Game class functions //
@@ -54,8 +60,9 @@ void Game::init( void ) {
 	initscr();
 	noecho();
 	curs_set(0);
-	 halfdelay(1);
-	//timeout(200);
+//	halfdelay(1);
+	// timeout(200);
+	nodelay(stdscr, true);
 	getmaxyx(stdscr, r_scry, r_scrx );
 /*	if ( r_scrx < this->_scr_x || r_scry < this->_scr_y )
 	{
@@ -150,6 +157,7 @@ void Game::g_check_getch( void ) {
 	{
 		// mvaddch(tmp->obj->getPosY(), tmp->obj->getPosX() + 1, '-');
 		tmp->obj->shoot();
+		return ;
 	}
 	// std::cout << key << std::endl;
 }

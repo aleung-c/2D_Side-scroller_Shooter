@@ -6,7 +6,7 @@
 /*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 18:40:38 by ajulien           #+#    #+#             */
-/*   Updated: 2015/06/20 22:55:27 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/06/21 12:53:36 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ Projectile::~Projectile( void ) {
 void	Projectile::die( void ) {
 	_n->prev->next = _n->next;
 	_n->next->prev = _n->prev;
-	delete this;
+
 	return ;
 }
 

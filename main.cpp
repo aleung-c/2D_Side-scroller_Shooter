@@ -6,7 +6,7 @@
 /*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 10:17:43 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/06/20 23:19:31 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/06/21 13:21:21 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void ft_retro( void )
 
 	time ( &rawtime );
 	timeinfo = localtime ( &rawtime );
-
+	int		i=0;
 	// Player		player2(5, 12, 'P');
 	// Ennemy and player have Projectile subclass.
 
@@ -31,16 +31,26 @@ void ft_retro( void )
 	game.g_place(/*, items*/);
 	
 	game.spawn();
-	player.shoot();
+	// player.shoot();
 	while (1)
 	{
-			game.spawn();
+			usleep(100);
+			i++;
 			game.g_check_getch();
-			
-			usleep(1);
-			game.g_refresh();
-			game.GameEvents();
 
+			if (i == 300 || i == 900 || i == 600)
+			{
+				game.g_refresh();
+				game.GameEvents();
+			}
+			game.spawn();
+			if (i == 1000)
+			{
+			
+				i =0;
+			}
+			
+			
 			// clear();
 
 			refresh();
