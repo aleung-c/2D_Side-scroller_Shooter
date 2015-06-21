@@ -6,7 +6,7 @@
 /*   By: ajulien <ajulien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 10:43:58 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/06/21 13:57:23 by ajulien          ###   ########.fr       */
+/*   Updated: 2015/06/21 14:01:46 by ajulien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ class AEntity
 {
 	public:
 		AEntity(int x, int y, char c);
-		virtual ~AEntity( void );
-		AEntity( AEntity const &src );
+
 		AEntity( void );
 		AEntity & operator=( AEntity const &rhs );
 
@@ -42,7 +41,8 @@ class AEntity
 		// space var //
 		int posX; // position
 		int posY;
-
+		virtual ~AEntity( void );
+		AEntity( AEntity const &src );
 		int vecX; // valeur de deplacement au refresh
 		int vecY;
 

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   Player.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajulien <ajulien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 11:43:19 by ajulien           #+#    #+#             */
-/*   Updated: 2015/06/20 23:00:44 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/06/21 14:01:27 by ajulien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_retro.hpp"
 #include "Projectile.hpp"
-Player::Player( void ) : AEntity(1, 20, 'P')
+Player::Player( void )
 {
 //	std::cout << "Player set." << std::endl;
 	type = "Player";
@@ -22,6 +22,7 @@ Player::Player( void ) : AEntity(1, 20, 'P')
 Player::Player( int x, int y, char c ) : AEntity(x, y, c) {
 	//std::cout << "Player set." << std::endl;
 	type = "Player";
+	Game::_p1 = *this;
 	return;
 }
 
