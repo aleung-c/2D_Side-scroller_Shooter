@@ -6,7 +6,7 @@
 /*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 11:07:54 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/06/21 19:04:02 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/06/21 19:23:24 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -326,6 +326,7 @@ void	Game::takeDamage(){
 		exit(0);
 	} 
 }
+
 // accessors //
 
 int Game::get_scr_x( void ) const {
