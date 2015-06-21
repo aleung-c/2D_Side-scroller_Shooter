@@ -6,7 +6,7 @@
 /*   By: ajulien <ajulien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 10:22:44 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/06/21 14:28:19 by ajulien          ###   ########.fr       */
+/*   Updated: 2015/06/21 15:08:02 by ajulien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ class Game
 		void g_refresh( void );
 		void g_check_getch(); 	// check player touch et modifie les valeurs si touche pressed.
 		void GameEvents(); // Les events de jeu;
-		void check_PlayerEvents(AEntity * player);
-//		void check_EnnemyEvents(t_ent_obj * ennemy);
+		void check_PlayerEvents( void );
+		void check_EnnemyEvents(t_en_obj * ennemy);
 		void check_ProjectileEvents(AEntity * ennemy);
 		void	spawn(); // ennemy spawn
 		void	takeDamage();
@@ -43,6 +43,7 @@ class Game
 			int get_init_scr_y( void ) const;
 			int get_scroll( void ) const;
 			int get_nb_life( void ) const;
+			int get_shoot_delay( void ) const;
 
 			void set_scr_x( int var );
 			void set_scr_y( int var );
@@ -51,10 +52,11 @@ class Game
 			void set_scroll( int var );
 			void set_nb_life( int var );
 
-			static	Player &	p1 ;
 			static int			score;
 			static t_pro_obj *	projec_list;
 			static t_pro_obj *	projec_list_last;
+			static int shoot_delay;
+			static	Player * p1 ;
 
 			static t_en_obj *	ennemy_list;
 			static t_en_obj *	ennemy_list_last;

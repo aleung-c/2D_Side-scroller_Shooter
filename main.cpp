@@ -6,7 +6,7 @@
 /*   By: ajulien <ajulien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 10:17:43 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/06/21 14:31:35 by ajulien          ###   ########.fr       */
+/*   Updated: 2015/06/21 15:07:29 by ajulien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void ft_retro( void )
 {
 	Game		game;
 
-	Player		player(8, 20, 'P'); // player class daughter of Entity
+	// Player		player(8, 20, 'P'); // player class daughter of Entity
 
 	time_t rawtime;
 	struct tm * timeinfo;
@@ -32,12 +32,13 @@ void ft_retro( void )
 
 	game.spawn();
 	// player.shoot();
+
 	while (1)
 	{
 			usleep(100);
 			i++;
 			game.g_check_getch();
-
+			game.g_place(); // place player;
 			if (i == 300 || i == 900 || i == 600)
 			{
 				game.g_refresh();
@@ -46,7 +47,7 @@ void ft_retro( void )
 			game.spawn();
 			if (i == 1000)
 			{
-
+				Game::shoot_delay = 0;
 				i =0;
 			}
 

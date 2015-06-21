@@ -6,7 +6,7 @@
 /*   By: ajulien <ajulien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 11:42:39 by ajulien           #+#    #+#             */
-/*   Updated: 2015/06/21 14:20:41 by ajulien          ###   ########.fr       */
+/*   Updated: 2015/06/21 15:07:51 by ajulien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ class Player : public AEntity
 		~Player( void );
 		Player & operator=( Player const &rhs );
 		void	shoot( void );
+		void	die( void );
 
 	private:
 		Player( Player const &src );
