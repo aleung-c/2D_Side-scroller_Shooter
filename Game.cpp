@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Game.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajulien <ajulien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 11:07:54 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/06/21 13:24:30 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/06/21 13:47:34 by ajulien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,11 @@ void	Game::spawn() {
 
 // Game class functions //
 
-t_ent_obj * Game::obj_list = NULL;
-t_ent_obj * Game::obj_list_last  = Game::obj_list;
+t_en_obj * Game::ennemy_list = NULL;
+t_en_obj * Game::ennemy_list_last  = Game::ennemy_list;
+
+t_pro_obj * Game::projec_list = NULL;
+t_pro_obj * Game::projec_list_last  = Game::projec_list;
 
 void Game::init( void ) {
 	int r_scrx; // real values of the screen; user inputed;
@@ -115,7 +118,7 @@ void Game::g_place( void )
 		mvaddch(tmp->obj->getPosY(), tmp->obj->getPosX(), tmp->obj->getDisplay());
 		tmp = tmp->next;
 	}
-		
+
 }
 
 void Game::g_refresh( void ) {
@@ -129,7 +132,7 @@ void Game::g_refresh( void ) {
 		tmp->obj->setPosX(tmp->obj->getPosX() + tmp->obj->getvecX());
 		// std::cout << tmp->obj->getvecX() << std::endl;
 		tmp->obj->setPosY(tmp->obj->getPosY() + tmp->obj->getvecY());
-		
+
 		mvaddch(tmp->obj->getPosY(), tmp->obj->getPosX(), tmp->obj->getDisplay());
 		// move(tmp->obj->getPosY(), tmp->obj->getPosX());
 		// printw("%c", tmp->obj->getDisplay());

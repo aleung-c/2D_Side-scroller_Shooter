@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Aentity.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajulien <ajulien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 12:46:15 by ajulien           #+#    #+#             */
-/*   Updated: 2015/06/21 13:18:41 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/06/21 13:57:48 by ajulien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,26 +26,8 @@ AEntity::AEntity(int x, int y, char c): type("AEnt"), display(c){
 		std::cout << "x " << x << " should be between : " << MIN_X << " and " << MAX_X << std::endl;
 		exit(-1);
 	}
-	t_ent_obj	*n = new t_ent_obj;
-	t_ent_obj	*tmp;
 	vecX = 0;
 	vecY = 0;
-	n->obj = this;
-	n->next = NULL;
-	if (Game::obj_list == NULL)
-	{
-		Game::obj_list = n;
-		Game::obj_list_last = n;
-		n->prev = NULL;
-	}
-	else
-	{
-		Game::obj_list_last->next = n;
-		tmp = Game::obj_list_last;
-		Game::obj_list_last = n;
-		n->prev = tmp;
-	}
-	_n = n;
 }
 
 AEntity::AEntity(AEntity const &src){
@@ -62,13 +44,13 @@ AEntity &	AEntity::operator=(AEntity const & rhs){
 	return (*this);
 }
 
-void		AEntity::die(){
-	
-	_n->prev->next = _n->next;
-	if (_n->prev->next)
-		_n->next->prev = _n->prev;
-	// delete this;
-}
+// void		AEntity::die(){
+
+// 	_n->prev->next = _n->next;
+// 	if (_n->prev->next)
+// 		_n->next->prev = _n->prev;
+// 	// delete this;
+// }
 
 int			AEntity::getPosX(){
 	return(this->posX);

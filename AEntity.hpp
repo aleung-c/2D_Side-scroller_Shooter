@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AEntity.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajulien <ajulien@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 10:43:58 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/06/20 23:15:15 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/06/21 13:57:23 by ajulien          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ class AEntity
 		std::string		getType( void ) const;
 		void			setvecX( int var );
 		void			setvecY( int var );
-		void			die();
+		virtual void	die() = 0;
 
 	protected:
 		// space var //
@@ -45,8 +45,6 @@ class AEntity
 
 		int vecX; // valeur de deplacement au refresh
 		int vecY;
-
-		t_ent_obj *_n;
 
 		std::string		type;
 		// apparence //
