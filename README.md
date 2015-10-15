@@ -8,3 +8,4 @@ We decided to make a horizontal shooter. Each element of the game is an object e
 
 The point of this project was double: learning to effectively and practicely use objects in C++ programming, as well as organizing the code in object-oriented team programming.
 
+![Alt text](./cover/ft_retro_screenshot.png "ft_retro screenshot")
